@@ -11,7 +11,7 @@ export default function Home() {
             <img
               className={styles.profileImage}
               size="lg"
-              circle
+              
               src="https://i.pravatar.cc/150?img=13"
               alt="@juanmartin"
             />

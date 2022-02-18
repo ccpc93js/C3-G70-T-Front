@@ -1,96 +1,61 @@
-import React from "react";
-<<<<<<< HEAD
-import { Navbar, Nav, Avatar } from "rsuite/esm";
-import { Input, InputGroup } from "rsuite";
-=======
-import { Navbar } from "reactstrap";
->>>>>>> origin/dev
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarBrand,
+  NavItem,
+  NavLink,
+  Nav,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  DropdownItem,
+  Button,
+} from "reactstrap";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { MdDashboard, MdGroups } from "react-icons/md";
 import "./NavBar.css";
+
 const NavBar = () => {
+  const icons = {
+    search: <AiOutlineSearch />,
+    home: <AiFillHome />,
+    red: <MdDashboard />,
+    amigos: <FaUserFriends />,
+    grupos: <MdGroups />,
+  };
+  const [open, setOpen] = useState(true);
   return (
     <>
-      <Navbar className="NavBar">
-<<<<<<< HEAD
-        <Navbar.Brand href="#">LOGO</Navbar.Brand>
-        <Nav className="search">
-          <InputGroup inside>
-            <Input />
-            <InputGroup.Addon>
-              <AiOutlineSearch />
-            </InputGroup.Addon>
-          </InputGroup>
-        </Nav>
-        <Nav>
-          <Nav.Item
-            eventKey="1"
-            icon={<AiFillHome style={{ marginRight: "5px" }} />}
-          >
-            Inicio
-          </Nav.Item>
-          <Nav.Item
-            eventKey="2"
-            icon={<MdDashboard style={{ marginRight: "5px" }} />}
-          >
-            Red
-          </Nav.Item>
-          <Nav.Item
-            eventKey="3"
-            icon={<MdGroups style={{ marginRight: "5px" }} />}
-          >
-            Grupos
-          </Nav.Item>
-          <Nav.Item
-            eventKey="4"
-            icon={<FaUserFriends style={{ marginRight: "5px" }} />}
-          >
-            Amigos
-          </Nav.Item>
-          <Nav>
-            <Nav.Dropdown
-              icon={
-                <Avatar
-                  size="xs"
-                  circle
-                  src="https://avatars.githubusercontent.com/u/2797600"
-                />
-              }
-              title="NombrePerfil"
-            >
-              <Nav.Dropdown.Item eventKey="6">Cerrar sesion</Nav.Dropdown.Item>
-              <Nav.Dropdown.Item eventKey="7">Editar Perfil</Nav.Dropdown.Item>
-            </Nav.Dropdown>
+      <Navbar expand="sm" light className="NavBar">
+        <NavbarBrand href="/">LOGO</NavbarBrand>
+        <Button onClick={() => setOpen(!open)} />
+        <Collapse navbar isOpen={open}>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="">{icons.home} Inicio</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.red} Red</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.amigos} Amigos</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.grupos} Grupos</NavLink>
+            </NavItem>
+            <UncontrolledDropdown inNavbar nav>
+              <DropdownToggle caret nav>
+                MiCuenta
+              </DropdownToggle>
+              <DropdownMenu dark>
+                <DropdownItem>Modificar perfil</DropdownItem>
+                <DropdownItem>Cerrar sesion</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
-        </Nav>
-=======
-        <span href="#">LOGO</span>
-        <div className="search">
-          <input />
-          <div>
-            <AiOutlineSearch />
-          </div>
-        </div>
-        <nav>
-          <p icon={<AiFillHome style={{ marginRight: "5px" }} />}>Inicio</p>
-          <p icon={<MdDashboard style={{ marginRight: "5px" }} />}>Red</p>
-          <p icon={<MdGroups style={{ marginRight: "5px" }} />}>Grupos</p>
-          <p icon={<FaUserFriends style={{ marginRight: "5px" }} />}>Amigos</p>
-          <div
-            icon={
-              <img
-                src="https://avatars.githubusercontent.com/u/2797600"
-                alt="avatar"
-              />
-            }
-            title="NombrePerfil"
-          >
-            <span>Editar Perfil</span>
-            <span>Cerrar sesion</span>
-          </div>
-        </nav>
->>>>>>> origin/dev
+        </Collapse>
       </Navbar>
     </>
   );

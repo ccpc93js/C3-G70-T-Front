@@ -5,6 +5,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@rsuite/icons": "^1.0.2",
+    "@rsuite/responsive-nav": "^5.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

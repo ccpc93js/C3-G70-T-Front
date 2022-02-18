@@ -1,6 +1,10 @@
 import React from "react";
+<<<<<<< HEAD
 import { Navbar, Nav, Avatar } from "rsuite/esm";
 import { Input, InputGroup } from "rsuite";
+=======
+import { Navbar } from "reactstrap";
+>>>>>>> origin/dev
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { MdDashboard, MdGroups } from "react-icons/md";
@@ -9,6 +13,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar className="NavBar">
+<<<<<<< HEAD
         <Navbar.Brand href="#">LOGO</Navbar.Brand>
         <Nav className="search">
           <InputGroup inside>
@@ -59,6 +64,33 @@ const NavBar = () => {
             </Nav.Dropdown>
           </Nav>
         </Nav>
+=======
+        <span href="#">LOGO</span>
+        <div className="search">
+          <input />
+          <div>
+            <AiOutlineSearch />
+          </div>
+        </div>
+        <nav>
+          <p icon={<AiFillHome style={{ marginRight: "5px" }} />}>Inicio</p>
+          <p icon={<MdDashboard style={{ marginRight: "5px" }} />}>Red</p>
+          <p icon={<MdGroups style={{ marginRight: "5px" }} />}>Grupos</p>
+          <p icon={<FaUserFriends style={{ marginRight: "5px" }} />}>Amigos</p>
+          <div
+            icon={
+              <img
+                src="https://avatars.githubusercontent.com/u/2797600"
+                alt="avatar"
+              />
+            }
+            title="NombrePerfil"
+          >
+            <span>Editar Perfil</span>
+            <span>Cerrar sesion</span>
+          </div>
+        </nav>
+>>>>>>> origin/dev
       </Navbar>
     </>
   );

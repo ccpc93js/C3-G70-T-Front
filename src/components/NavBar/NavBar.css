@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 .search {
   margin: 1vh;
   width: 25vw;
+=======
+/* .search {
+  display: inline-flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 270px;
+>>>>>>> origin/dev
   color: whitesmoke;
 }
 .NavBar {
   background-color: blueviolet;
   color: whitesmoke;
+<<<<<<< HEAD
   font-family: "Poppins Light", Arial, monospace;
   display: flex;
   justify-content: space-between;
@@ -17,3 +26,6 @@
     align-items: center;
   }
 }
+=======
+} */
+>>>>>>> origin/dev

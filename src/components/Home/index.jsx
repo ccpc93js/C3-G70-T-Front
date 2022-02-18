@@ -1,14 +1,14 @@
 import React from "react";
-import { Grid, Row, Col, Avatar, Tag, Progress, Message } from "rsuite";
+
 import styles from "./Home.module.scss";
 
 export default function Home() {
   return (
-    <Grid fluid className={styles.root}>
-      <Row className={styles.row}>
-        <Col sm={23} md={5} lg={6} className={styles.profile} xsHidden>
+    <div fluid className={styles.root}>
+      <div className={styles.row}>
+        <div sm={23} md={5} lg={6} className={styles.profile} xsHidden>
           <div className={styles.profile__top}>
-            <Avatar
+            <img
               className={styles.profileImage}
               size="lg"
               circle
@@ -20,62 +20,62 @@ export default function Home() {
             <p>@juanmartin</p>
           </div>
           <div className={styles.profile__stats}>
-            <Tag className={styles.profile__stat}>
+            <div className={styles.profile__stat}>
               <span>Tweets</span>
               <span>1.2k</span>
-            </Tag>
-            <Tag className={styles.profile__stat}>
+            </div>
+            <div className={styles.profile__stat}>
               <span>Tweets</span>
               <span>1.2k</span>
-            </Tag>
-            <Tag className={styles.profile__stat}>
+            </div>
+            <div className={styles.profile__stat}>
               <span>Tweets</span>
               <span>1.2k</span>
-            </Tag>
+            </div>
           </div>
-        </Col>
-        <Col xs={22} sm={23} md={11} lg={12} className={styles.feed}>
-          <Message type="info">
+        </div>
+        <div xs={22} sm={23} md={11} lg={12} className={styles.feed}>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-          <Message type="info">
+          </div>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-          <Message type="info">
+          </div>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-          <Message type="info">
+          </div>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-          <Message type="info">
+          </div>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-          <Message type="info">
+          </div>
+          <div type="info">
             <h3>Title</h3>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Message>
-        </Col>
-        <Col sm={23} md={5} lg={6} className={styles.aside} xsHidden>
+          </div>
+        </div>
+        <div sm={23} md={5} lg={6} className={styles.aside} xsHidden>
           <h3>Statistics</h3>
-          <Progress.Line />
-          <Progress.Line percent={30} strokeColor="#ffc107" />
-          <Progress.Line percent={30} status="active" />
-          <Progress.Line percent={50} status="fail" />
-          <Progress.Line percent={100} status="success" />
-          <Progress.Line percent={80} showInfo={false} />
-        </Col>
-      </Row>
-    </Grid>
+          <div />
+          <div percent={30} strokeColor="#ffc107" />
+          <div percent={30} status="active" />
+          <div percent={50} status="fail" />
+          <div percent={100} status="success" />
+          <div percent={80} showInfo={false} />
+        </div>
+      </div>
+    </div>
   );
 }

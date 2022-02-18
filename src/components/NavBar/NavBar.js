@@ -1,6 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Dropdown, Avatar } from "rsuite/esm";
-import { Input, InputGroup } from "rsuite";
+import { Navbar } from "reactstrap";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { MdDashboard, MdGroups } from "react-icons/md";
@@ -9,40 +8,31 @@ const NavBar = () => {
   return (
     <>
       <Navbar className="NavBar">
-        <Navbar.Brand href="#">LOGO</Navbar.Brand>
-        <InputGroup className="search" pullLeft>
-          <Input />
-          <InputGroup.Addon>
+        <span href="#">LOGO</span>
+        <div className="search">
+          <input />
+          <div>
             <AiOutlineSearch />
-          </InputGroup.Addon>
-        </InputGroup>
-        <Nav pullRight>
-          <Nav.Item icon={<AiFillHome style={{ marginRight: "5px" }} />}>
-            Inicio
-          </Nav.Item>
-          <Nav.Item icon={<MdDashboard style={{ marginRight: "5px" }} />}>
-            Red
-          </Nav.Item>
-          <Nav.Item icon={<MdGroups style={{ marginRight: "5px" }} />}>
-            Grupos
-          </Nav.Item>
-          <Nav.Item icon={<FaUserFriends style={{ marginRight: "5px" }} />}>
-            Amigos
-          </Nav.Item>
-          <Dropdown
+          </div>
+        </div>
+        <nav>
+          <p icon={<AiFillHome style={{ marginRight: "5px" }} />}>Inicio</p>
+          <p icon={<MdDashboard style={{ marginRight: "5px" }} />}>Red</p>
+          <p icon={<MdGroups style={{ marginRight: "5px" }} />}>Grupos</p>
+          <p icon={<FaUserFriends style={{ marginRight: "5px" }} />}>Amigos</p>
+          <div
             icon={
-              <Avatar
-                size="sm"
-                circle
+              <img
                 src="https://avatars.githubusercontent.com/u/2797600"
+                alt="avatar"
               />
             }
             title="NombrePerfil"
           >
-            <Dropdown.Item>Editar Perfil</Dropdown.Item>
-            <Dropdown.Item>Cerrar sesion</Dropdown.Item>
-          </Dropdown>
-        </Nav>
+            <span>Editar Perfil</span>
+            <span>Cerrar sesion</span>
+          </div>
+        </nav>
       </Navbar>
     </>
   );

@@ -1,0 +1,26 @@
+@import "bootswatch/dist/vapor/_variables.scss";
+
+.profile__header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .profile__headerBackground {
+    position: absolute;
+    height: 6rem;
+    top: 0;
+    object-fit: cover;
+  }
+  .profile__headerAvatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    z-index: 1;
+    border: 0.25rem solid $primary;
+  }
+  .profile__subtitle {
+    font-size: .7rem;
+    font-style: italic;
+  }
+}

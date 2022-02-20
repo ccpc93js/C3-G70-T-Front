@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <Container fluid>
       <Row>
-        <Col>
-          <Sidebar />
+        <Col sm={{size:12}}>
+          <Sidebar/>
         </Col>
         <Col>
           <Feed />

@@ -10,7 +10,10 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
   DropdownItem,
-  Button,
+  NavbarToggler,
+  Form,
+  Col,
+  Input,
 } from "reactstrap";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
@@ -28,11 +31,16 @@ const NavBar = () => {
   const [open, setOpen] = useState(true);
   return (
     <>
-      <Navbar expand="sm" light className="NavBar">
+      <Navbar expand="sm" dark className="NavBar align-middle">
         <NavbarBrand href="/">LOGO</NavbarBrand>
-        <Button onClick={() => setOpen(!open)} />
+        <NavbarToggler onClick={() => setOpen(!open)} />
         <Collapse navbar isOpen={open}>
-          <Nav className="me-auto" navbar>
+          <Nav navbar>
+            <Form className="align-self-center">
+              <Col md={12}>
+                <Input placeholder="Buscar" name="searchInput" type="search" />
+              </Col>
+            </Form>
             <NavItem>
               <NavLink href="">{icons.home} Inicio</NavLink>
             </NavItem>
@@ -45,16 +53,18 @@ const NavBar = () => {
             <NavItem>
               <NavLink href="">{icons.grupos} Grupos</NavLink>
             </NavItem>
-            <UncontrolledDropdown inNavbar nav>
+          </Nav>
+          <div className="end ">
+            <UncontrolledDropdown>
               <DropdownToggle caret nav>
                 MiCuenta
               </DropdownToggle>
-              <DropdownMenu dark>
+              <DropdownMenu dark right>
                 <DropdownItem>Modificar perfil</DropdownItem>
                 <DropdownItem>Cerrar sesion</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-          </Nav>
+          </div>
         </Collapse>
       </Navbar>
     </>

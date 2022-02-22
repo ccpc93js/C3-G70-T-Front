@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Share.module.scss";
+import { FaImage, FaLink } from "react-icons/fa";
 import {
   Card,
   CardImg,
@@ -8,13 +9,14 @@ import {
   Label,
   Input,
   Button,
+  ButtonGroup,
 } from "reactstrap";
 
 export default function Share() {
   return (
-    <Card color="info">
+    <Card color="primary">
       <CardBody>
-        <FormGroup className={styles.formGroup}>
+        <FormGroup className={styles.share}>
           <Label for="post">
             <CardImg
               src="https://randomuser.me/api/portraits/med/men/83.jpg"
@@ -22,14 +24,21 @@ export default function Share() {
             />
           </Label>
           <Input
+            className=""
             type="text"
             name="post"
             id="post"
             placeholder="Crear publicación"
           />
         </FormGroup>
-
-        <Button>Share</Button>
+        <ButtonGroup className={styles.btnGroup}>
+          <Button color="primary">
+            <FaImage /> Foto
+          </Button>
+          <Button color="primary">
+            <FaLink /> Link
+          </Button>
+        </ButtonGroup>
       </CardBody>
     </Card>
   );

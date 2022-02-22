@@ -1,5 +1,8 @@
-.formGroup {
+@import "bootswatch/dist/vapor/_variables.scss";
+
+.share {
   display: flex;
+  margin-inline: 0.5rem;
 
   label {
     margin: 0;
@@ -8,8 +11,36 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      padding: .2rem;
+      padding: 0;
       margin: 0;
+      border: 3px solid $dark;
     }
+  }
+  input {
+    height: 100%;
+    padding: 0.6rem 0.25rem;
+    margin-block: auto;
+    margin-left: 1rem;
+    border-radius: 2rem;
+
+    &::placeholder {
+      padding-left: 0.5rem;
+    }
+  }
+}
+.btnGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
   }
 }

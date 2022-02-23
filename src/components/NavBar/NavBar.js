@@ -36,9 +36,14 @@ const NavBar = () => {
         <NavbarToggler onClick={() => setOpen(!open)} />
         <Collapse navbar isOpen={open}>
           <Nav navbar>
-            <Form className="align-self-center">
+            <Form className="align-self-center ">
               <Col md={12}>
-                <Input placeholder="Buscar" name="searchInput" type="search" />
+                <Input
+                  placeholder="Buscar"
+                  name="searchInput"
+                  type="search"
+                  className="rounded-pill"
+                />
               </Col>
             </Form>
             <NavItem>
@@ -54,17 +59,9 @@ const NavBar = () => {
               <NavLink href="">{icons.grupos} Grupos</NavLink>
             </NavItem>
           </Nav>
-          <div className="end ">
-            <UncontrolledDropdown>
-              <DropdownToggle caret nav>
-                MiCuenta
-              </DropdownToggle>
-              <DropdownMenu dark right>
-                <DropdownItem>Modificar perfil</DropdownItem>
-                <DropdownItem>Cerrar sesion</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </div>
+          <NavLink style={{ marginLeft: "auto", color: "whitesmoke" }} href="">
+            Perfil
+          </NavLink>
         </Collapse>
       </Navbar>
     </>

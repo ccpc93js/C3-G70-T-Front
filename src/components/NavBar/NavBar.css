@@ -1,17 +1,6 @@
-/* .search {
-  margin: 1vh;
-  width: 25vw;
-  color: whitesmoke;
-}
- */
 .NavBar {
   background-color: blueviolet;
   color: whitesmoke;
   font-family: "Poppins Light", Arial, monospace;
   text-align: center;
-  /* align-items: center; */
 }
-/* Nav NavItem {
-  padding: 1rem;
-  justify-items: center;
-} */

@@ -1,12 +1,6 @@
-.search {
-  display: inline-flex;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  width: 270px;
-  color: whitesmoke;
-  background-color: whitesmoke;
-}
 .NavBar {
   background-color: blueviolet;
   color: whitesmoke;
+  font-family: "Poppins Light", Arial, monospace;
+  text-align: center;
 }

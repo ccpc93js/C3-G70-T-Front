@@ -40,23 +40,44 @@
       margin-block: auto;
     }
     .comment {
+      cursor: pointer;
       path {
+        transition: color 0.1s linear;
         color: gray;
+      }
+      &:hover * {
+        color: hsl(0, 0%, 30%);
       }
     }
     .down {
+      cursor: pointer;
       path {
+        transition: color 0.1s linear;
         color: red;
+      }
+      &:hover * {
+        color: hsl(0, 100%, 65%);
       }
     }
     .up {
+      cursor: pointer;
+
       path {
+        transition: color 0.1s linear;
         color: green;
+      }
+      &:hover * {
+        color: hsl(120, 100%, 30%);
       }
     }
     .share {
+      cursor: pointer;
       path {
+        transition: color 0.1s linear;
         color: blue;
+      }
+      &:hover * {
+        color: hsl(240, 100%, 70%);
       }
     }
   }

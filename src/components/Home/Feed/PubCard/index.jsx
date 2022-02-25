@@ -33,7 +33,7 @@ export default function PubCard({ pub }) {
         <CardImg src={image} alt={title} />
       </CardBody>
       <CardBody className={styles.cardFooter}>
-        <FaComment className={styles.comment} />
+        <FaComment className={styles.comment}/>
         <CardText className={styles.likes}>
           <FaArrowAltCircleDown className={styles.down} />
           {likes}

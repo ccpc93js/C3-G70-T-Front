@@ -22,8 +22,12 @@
     margin-block: auto;
     margin-left: 1rem;
     border-radius: 2rem;
-
+    &[type="text"] {
+      color: black;
+      background-color: white;
+    }
     &::placeholder {
+      color: rgba(0, 0, 0, 0.7);
       padding-left: 0.5rem;
     }
   }

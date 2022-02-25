@@ -18,7 +18,7 @@ export default function Sidebar() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Card color="primary">
+    <Card color="primary" className="sticky-top">
       <CardHeader className={styles.profile__header}>
         <CardImg
           className={styles.profile__headerBackground}
@@ -33,12 +33,12 @@ export default function Sidebar() {
         />
         <CardTitle>Jeff Bezos</CardTitle>
         <CardSubtitle className={styles.profile__subtitle}>
-          Fornite - CsGo
+          Fornite - CS Go
         </CardSubtitle>
       </CardHeader>
       <Collapse isOpen={isOpen}>
-        <CardBody className="d-flex flex-column align-items-center">
-          <CardText>
+        <CardBody className="d-flex flex-column align-items-center pb-0">
+          <CardText className="text-center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
             posuere erat a ante.
           </CardText>

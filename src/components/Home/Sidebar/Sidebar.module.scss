@@ -1,0 +1,27 @@
+.profile__header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white-secund);
+  color: black;
+  .profile__headerBackground {
+    position: absolute;
+    height: 6rem;
+    top: 0;
+    object-fit: cover;
+  }
+  .profile__headerAvatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    z-index: 1;
+    border: 0.25rem solid var(--color-white-secund);
+  }
+  .profile__subtitle {
+    font-size: .7rem;
+    font-style: italic;
+    color:  rgba(0, 0, 0, 0.8);
+  }
+}

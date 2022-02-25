@@ -1,38 +1,68 @@
-import React from "react";
-import { Navbar } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarBrand,
+  NavItem,
+  NavLink,
+  Nav,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  DropdownItem,
+  NavbarToggler,
+  Form,
+  Col,
+  Input,
+} from "reactstrap";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { MdDashboard, MdGroups } from "react-icons/md";
 import "./NavBar.css";
+
 const NavBar = () => {
+  const icons = {
+    search: <AiOutlineSearch />,
+    home: <AiFillHome />,
+    red: <MdDashboard />,
+    amigos: <FaUserFriends />,
+    grupos: <MdGroups />,
+  };
+  const [open, setOpen] = useState(true);
   return (
     <>
-      <Navbar className="NavBar">
-        <span href="#">LOGO</span>
-        <div className="search">
-          <input />
-          <div>
-            <AiOutlineSearch />
-          </div>
-        </div>
-        <nav>
-          <p icon={<AiFillHome style={{ marginRight: "5px" }} />}>Inicio</p>
-          <p icon={<MdDashboard style={{ marginRight: "5px" }} />}>Red</p>
-          <p icon={<MdGroups style={{ marginRight: "5px" }} />}>Grupos</p>
-          <p icon={<FaUserFriends style={{ marginRight: "5px" }} />}>Amigos</p>
-          <div
-            icon={
-              <img
-                src="https://avatars.githubusercontent.com/u/2797600"
-                alt="avatar"
-              />
-            }
-            title="NombrePerfil"
-          >
-            <span>Editar Perfil</span>
-            <span>Cerrar sesion</span>
-          </div>
-        </nav>
+      <Navbar expand="sm" dark className="NavBar align-middle">
+        <NavbarBrand href="/">LOGO</NavbarBrand>
+        <NavbarToggler onClick={() => setOpen(!open)} />
+        <Collapse navbar isOpen={open}>
+          <Nav navbar>
+            <Form className="align-self-center ">
+              <Col md={12}>
+                <Input
+                  placeholder="Buscar"
+                  name="searchInput"
+                  type="search"
+                  className="rounded-pill"
+                />
+              </Col>
+            </Form>
+            <NavItem>
+              <NavLink href="">{icons.home} Inicio</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.red} Red</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.amigos} Amigos</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="">{icons.grupos} Grupos</NavLink>
+            </NavItem>
+          </Nav>
+          <NavLink style={{ marginLeft: "auto", color: "whitesmoke" }} href="">
+            Perfil
+          </NavLink>
+        </Collapse>
       </Navbar>
     </>
   );

@@ -9,13 +9,13 @@ export default function Home() {
   return (
     <Container fluid className={styles.root}>
       <Row>
-        <Col sm={12} md={4} >
+        <Col sm={12} md={3}>
           <Sidebar />
         </Col>
-        <Col sm={12} md={8}className="my-2">
+        <Col sm={12} md={6} className="my-2">
           <Feed />
         </Col>
-        <Col>
+        <Col sm={12} md={3}>
           <Aside />
         </Col>
       </Row>

@@ -29,6 +29,19 @@ const pubs = [
     posted: "hace 1 dia",
     likes: 153,
   },
+  {
+    id: 3,
+    user: {
+      name: "Robert Ran",
+      avatar: "https://randomuser.me/api/portraits/med/men/7.jpg",
+    },
+    title: "Anda la osa",
+    description: "Las cosas que pasan ",
+    image: "https://picsum.photos/id/2/200/300",
+    posted: "hace 1 dia",
+    likes: 153,
+  },
+  
 ];
 
 export default function Feed() {

@@ -14,7 +14,7 @@ import {
 
 export default function Share() {
   return (
-    <Card color="primary">
+    <Card className={styles.card}>
       <CardBody>
         <FormGroup className={styles.share}>
           <Label for="post">

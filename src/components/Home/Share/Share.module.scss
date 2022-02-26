@@ -1,5 +1,9 @@
 @import "bootswatch/dist/vapor/_variables.scss";
 
+.card{
+  background-color: rgba(196, 196, 196, 0.2);
+}
+
 .share {
   display: flex;
   margin-inline: 0.5rem;

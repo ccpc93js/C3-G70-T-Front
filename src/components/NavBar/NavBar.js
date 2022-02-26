@@ -28,7 +28,7 @@ const NavBar = () => {
     amigos: <FaUserFriends />,
     grupos: <MdGroups />,
   };
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Navbar expand="sm" dark className="NavBar align-middle">

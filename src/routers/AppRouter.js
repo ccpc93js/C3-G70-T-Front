@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 import { DashboardRoutes } from "./DashboardRoutes";
+import { DashboardLogin } from "./DashboardLogin";
 
 export const AppRouter = () => {
   return (
@@ -16,10 +17,10 @@ export const AppRouter = () => {
         }
       />
       <Route
-        path="/login"
+        path="/auth/*"
         element={
           <PublicRoutes>
-            <h1>Login Screen</h1>
+            <DashboardLogin />
           </PublicRoutes>
         }
       />

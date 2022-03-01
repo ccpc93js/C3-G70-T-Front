@@ -6,7 +6,7 @@ import { LoginScreen2 } from "./components/auth/LoginScreen2";
 import { RegisterScreen } from "./components/auth/RegisterScreen";
 
 function App() {
-  return <LoginScreen2 />;
+  return <></>;
 }
 
 export default App;

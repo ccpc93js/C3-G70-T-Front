@@ -2,11 +2,14 @@ import React from "react";
 import "bootswatch/dist/vapor/bootstrap.min.css";
 import "./styles/styles.scss";
 
-import { LoginScreen2 } from "./components/auth/LoginScreen2";
-import { RegisterScreen } from "./components/auth/RegisterScreen";
+import { AppRouter } from "./routers/AppRouter";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <AppRouter />
+    </>
+  );
 }
 
 export default App;

@@ -1,0 +1,84 @@
+.card {
+  background-color: white;
+  margin-top: 1rem;
+  * {
+    color: black;
+  }
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    .cardHeader__info {
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      p {
+        font-size: 0.8rem;
+        color: rgba(0, 0, 0, 0.8);
+        font-style: italic;
+      }
+    }
+  }
+  .cardBody {
+    img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+  }
+  .cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    margin-inline: auto;
+    width: 90%;
+    .likes {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-block: auto;
+    }
+    .comment {
+      cursor: pointer;
+      path {
+        transition: color 0.1s linear;
+        color: gray;
+      }
+      &:hover * {
+        color: hsl(0, 0%, 30%);
+      }
+    }
+    .down {
+      cursor: pointer;
+      path {
+        transition: color 0.1s linear;
+        color: red;
+      }
+      &:hover * {
+        color: hsl(0, 100%, 65%);
+      }
+    }
+    .up {
+      cursor: pointer;
+
+      path {
+        transition: color 0.1s linear;
+        color: green;
+      }
+      &:hover * {
+        color: hsl(120, 100%, 30%);
+      }
+    }
+    .share {
+      cursor: pointer;
+      path {
+        transition: color 0.1s linear;
+        color: blue;
+      }
+      &:hover * {
+        color: hsl(240, 100%, 70%);
+      }
+    }
+  }
+}

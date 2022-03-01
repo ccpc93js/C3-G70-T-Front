@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { usersApi } from "../../app/services/users";
 
 const initialState = {
-  isAuthenticated: true,
+  isAuthenticated: false,
   user: null,
   token: null,
 };

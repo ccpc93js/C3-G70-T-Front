@@ -1,6 +1,7 @@
 import React from "react";
 import "bootswatch/dist/vapor/bootstrap.min.css";
-import "./App.css";
+import "./styles/styles.scss";
+
 import { AppRouter } from "./routers/AppRouter";
 
 function App() {

@@ -1,24 +1,12 @@
 import React from "react";
 import "bootswatch/dist/vapor/bootstrap.min.css";
+import "./styles/styles.scss";
 
-import "./App.css";
-
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import NavBar from "./components/NavBar/NavBar";
+import { LoginScreen2 } from "./components/auth/LoginScreen2";
+import { RegisterScreen } from "./components/auth/RegisterScreen";
 
 function App() {
-  return (
-    <>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user" element={<h1>User</h1>} />
-        <Route path="/login" element={<h1>Login</h1>} />
-        <Route path="/*" element={<h1>Pagina no encontrada</h1>} />
-      </Routes>
-    </>
-  );
+  return <LoginScreen2 />;
 }
 
 export default App;

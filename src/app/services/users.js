@@ -2,18 +2,18 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const usersApi = createApi({
   reducerPath: "usersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://ingamers.api/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api-ingamer.herokuapp.com/api" }),
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (credentials) => ({
-        url: "auth/login",
+        url: "users/login",
         method: "POST",
         body: credentials,
       }),
     }),
     register: builder.mutation({
       query: (credentials) => ({
-        url: "auth/register",
+        url: "users/register",
         method: "POST",
         body: credentials,
       }),

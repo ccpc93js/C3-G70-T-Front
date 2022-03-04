@@ -59,6 +59,7 @@ export const CarrouselImgs = () => {
       style={{ height: "100vh" }}
     >
       {slides}
+     
     </Carousel>
   );
 };

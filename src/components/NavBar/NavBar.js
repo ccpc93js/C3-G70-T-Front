@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -6,10 +7,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown,
-  DropdownItem,
   NavbarToggler,
   Form,
   Col,
@@ -32,7 +29,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar expand="sm" dark className="NavBar align-middle">
-        <NavbarBrand href="/">LOGO</NavbarBrand>
+        <NavbarBrand>LOGO</NavbarBrand>
         <NavbarToggler onClick={() => setOpen(!open)} />
         <Collapse navbar isOpen={open}>
           <Nav navbar>
@@ -47,21 +44,34 @@ const NavBar = () => {
               </Col>
             </Form>
             <NavItem>
-              <NavLink href="">{icons.home} Inicio</NavLink>
+              <Link className="nav-link" to="/">
+                {icons.home} Inicio
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="">{icons.red} Red</NavLink>
+              <Link className="nav-link" to="/red">
+                {icons.red} Red
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="">{icons.amigos} Amigos</NavLink>
+              <Link className="nav-link" to="/amigos">
+                {icons.amigos} Amigos
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="">{icons.grupos} Grupos</NavLink>
+              <Link className="nav-link" to="/grupos">
+                {icons.grupos} Grupos
+              </Link>
             </NavItem>
           </Nav>
-          <NavLink style={{ marginLeft: "auto", color: "whitesmoke" }} href="">
+
+          <Link
+            className="nav-link"
+            style={{ marginLeft: "auto", color: "whitesmoke" }}
+            to="/perfil"
+          >
             Perfil
-          </NavLink>
+          </Link>
         </Collapse>
       </Navbar>
     </>

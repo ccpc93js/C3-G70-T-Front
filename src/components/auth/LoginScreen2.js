@@ -18,6 +18,9 @@ export const LoginScreen2 = () => {
       password,
     });
     console.log(response);
+    if (!error) {
+      console.log("Login Error: ", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -28,6 +31,16 @@ export const LoginScreen2 = () => {
       setPassword(value);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="container h-100 w-100 d-flex justify-content-center align-item-center ">
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="row align-items-center h-100 m-0 p-0">
@@ -65,9 +78,7 @@ export const LoginScreen2 = () => {
             </button>
           </div>
           <div className="row mt-3 bg-white">
-            <Link 
-              to="/auth/register"
-            className="btn btn-primary rounded-pill">
+            <Link to="/auth/register" className="btn btn-primary rounded-pill">
               Registrarte
             </Link>
           </div>

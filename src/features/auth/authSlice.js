@@ -11,17 +11,32 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: () => initialState,
+    loginFromLS: (state, action) => {
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+    },
+    logout: () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addMatcher(usersApi.endpoints.login.matchPending, (state, action) => {
-        console.log("login pending", action);
+        console.log("login pending");
       })
       .addMatcher(usersApi.endpoints.login.matchFulfilled, (state, action) => {
-        console.log("login fulfilled", action);
+        const user = {
+          id: action.payload.id,
+          username: action.payload.username,
+          email: action.payload.emial,
+        };
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("user", JSON.stringify(user));
         state.isAuthenticated = true;
-        state.user = action.payload.user;
+        state.user = user;
         state.token = action.payload.token;
       })
       .addMatcher(usersApi.endpoints.login.matchRejected, (state, action) => {
@@ -30,7 +45,7 @@ const slice = createSlice({
   },
 });
 
-export const {logout} = slice.actions;
+export const { logout, loginFromLS } = slice.actions;
 
 export default slice.reducer;
 

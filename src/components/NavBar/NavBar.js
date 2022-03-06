@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "./../../features/auth/authSlice";
 import { Link } from "react-router-dom";
 import {
   Collapse,
@@ -17,6 +19,12 @@ import { MdDashboard, MdGroups } from "react-icons/md";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   const icons = {
     search: <AiOutlineSearch />,
     home: <AiFillHome />,
@@ -26,54 +34,59 @@ const NavBar = () => {
   };
   const [open, setOpen] = useState(false);
   return (
-    <>
-      <Navbar expand="sm" dark className="NavBar align-middle">
-        <NavbarBrand>LOGO</NavbarBrand>
-        <NavbarToggler onClick={() => setOpen(!open)} />
-        <Collapse navbar isOpen={open}>
-          <Nav navbar>
-            <Form className="align-self-center ">
-              <Col md={12}>
-                <Input
-                  placeholder="Buscar"
-                  name="searchInput"
-                  type="search"
-                  className="rounded-pill"
-                />
-              </Col>
-            </Form>
-            <NavItem>
-              <Link className="nav-link" to="/">
-                {icons.home} Inicio
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/red">
-                {icons.red} Red
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/amigos">
-                {icons.amigos} Amigos
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/grupos">
-                {icons.grupos} Grupos
-              </Link>
-            </NavItem>
-          </Nav>
-
-          <Link
-            className="nav-link"
+    <Navbar expand="sm" dark className="NavBar align-middle">
+      <NavbarBrand>LOGO</NavbarBrand>
+      <NavbarToggler onClick={() => setOpen(!open)} />
+      <Collapse navbar isOpen={open}>
+        <Nav navbar>
+          <Form className="align-self-center ">
+            <Col md={12}>
+              <Input
+                placeholder="Buscar"
+                name="searchInput"
+                type="search"
+                className="rounded-pill"
+              />
+            </Col>
+          </Form>
+          <NavItem>
+            <Link className="nav-link" to="/">
+              {icons.home} Inicio
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to="/red">
+              {icons.red} Red
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to="/amigos">
+              {icons.amigos} Amigos
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to="/grupos">
+              {icons.grupos} Grupos
+            </Link>
+          </NavItem>
+          <button
+            className="btn nav-link mx-auto"
             style={{ marginLeft: "auto", color: "whitesmoke" }}
-            to="/perfil"
+            onClick={handleLogout}
           >
-            Perfil
-          </Link>
-        </Collapse>
-      </Navbar>
-    </>
+            Cerrar Sesión
+          </button>
+        </Nav>
+
+        <Link
+          className="nav-link"
+          style={{ marginLeft: "auto", color: "whitesmoke" }}
+          to="/perfil"
+        >
+          Perfil
+        </Link>
+      </Collapse>
+    </Navbar>
   );
 };
 

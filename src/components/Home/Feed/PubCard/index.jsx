@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -20,6 +21,15 @@ export default function PubCard({ pub }) {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
+
+  const { id: isDetails } = useParams();
+
+  const formatDate = (date) => {
+    const dateObj = new Date(date);
+    const dateFormatted = dateObj.toLocaleDateString();
+    const timeFormatted = dateObj.toLocaleTimeString();
+    return `${dateFormatted} ${timeFormatted}`;
+  };
 
   const handleLike = () => {
     if (disliked) {
@@ -55,13 +65,21 @@ export default function PubCard({ pub }) {
         <img src={avatar} alt={id} className="rounded-circle" />
         <div className={styles.cardHeader__info}>
           <CardTitle>{id}</CardTitle>
-          <CardText>{posted}</CardText>
+          <CardText>{formatDate(posted)}</CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>
         <CardTitle>{title}</CardTitle>
         <CardText>{description}</CardText>
         <CardImg src={image} alt={title} />
+
+        {!isDetails && (
+          <div className="btn-group d-flex">
+            <Link to={`/post/${id}`} className="btn">
+              Ver Mas...
+            </Link>
+          </div>
+        )}
       </CardBody>
       <CardBody className={styles.cardFooter}>
         <FaComment className={styles.comment} />

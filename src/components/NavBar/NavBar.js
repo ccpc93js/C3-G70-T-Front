@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
-import { MdDashboard, MdGroups } from "react-icons/md";
+import { MdDashboard, MdGroups, MdGames } from "react-icons/md";
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -26,6 +26,7 @@ const NavBar = () => {
   };
 
   const icons = {
+    logo: <MdGames />,
     search: <AiOutlineSearch />,
     home: <AiFillHome />,
     red: <MdDashboard />,
@@ -35,7 +36,9 @@ const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
     <Navbar expand="sm" dark className="NavBar align-middle">
-      <NavbarBrand>LOGO</NavbarBrand>
+      <Link className="navbar-brand px-2" style={{ fontSize: "2rem" }} to="/">
+        {icons.logo}
+      </Link>
       <NavbarToggler onClick={() => setOpen(!open)} />
       <Collapse navbar isOpen={open}>
         <Nav navbar>
@@ -49,11 +52,11 @@ const NavBar = () => {
               />
             </Col>
           </Form>
-          <NavItem>
+          {/* <NavItem>
             <Link className="nav-link" to="/">
               {icons.home} Inicio
             </Link>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <Link className="nav-link" to="/red">
               {icons.red} Red
@@ -81,7 +84,7 @@ const NavBar = () => {
         <Link
           className="nav-link"
           style={{ marginLeft: "auto", color: "whitesmoke" }}
-          to="/perfil"
+          to="/user"
         >
           Perfil
         </Link>

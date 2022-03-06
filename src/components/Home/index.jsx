@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Aside from "./Aside";
 import Feed from "./Feed";
 import Sidebar from "./Sidebar";
 import styles from "./Home.module.scss";
 import { Container, Row, Col } from "reactstrap";
 
+import { useGetUserQuery } from "../../app/services/users";
+
 export default function Home() {
+  const { data } = useGetUserQuery("3");
+
+  useEffect(() => {
+    // console.log(data);
+  }, [data]);
+
   return (
     <Container fluid className={styles.root}>
       <Row>

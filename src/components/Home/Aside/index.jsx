@@ -15,11 +15,9 @@ export default function Aside() {
           <p>Contacto</p>
         </CardBody>
         <CardText className="text-center">
-          <p>
-            InGamers © 2022
-            <br />
-            Todos los derechos reservados
-          </p>
+          InGamers © 2022
+          <br />
+          Todos los derechos reservados
         </CardText>
       </Card>
     </div>

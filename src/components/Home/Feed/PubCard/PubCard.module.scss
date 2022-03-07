@@ -25,6 +25,17 @@
       aspect-ratio: 4/3;
       object-fit: cover;
     }
+    .more {
+      display: block;
+      color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      text-decoration: none;
+      text-align: center;
+      &:hover {
+        color: rgba(0, 0, 0, 0.8);
+        text-decoration: underline;
+      }
+    }
   }
   .cardFooter {
     display: flex;

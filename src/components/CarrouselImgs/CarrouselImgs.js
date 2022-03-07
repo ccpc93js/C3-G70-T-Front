@@ -12,7 +12,7 @@ export const CarrouselImgs = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          <div className="carousel-item active" data-bs-interval="5000">
+          <div className="carousel-item active" data-bs-interval="3000">
             <img
               src={img1}
               className="d-block"
@@ -20,7 +20,7 @@ export const CarrouselImgs = () => {
               style={{ height: "100vh" }}
             />
           </div>
-          <div className="carousel-item" data-bs-interval="5000">
+          <div className="carousel-item" data-bs-interval="3000">
             <img
               src={img2}
               className="d-block "
@@ -28,7 +28,7 @@ export const CarrouselImgs = () => {
               style={{ height: "100vh" }}
             />
           </div>
-          <div className="carousel-item" data-bs-interval="5000">
+          <div className="carousel-item" data-bs-interval="3000">
             <img
               src={img3}
               className="d-block"

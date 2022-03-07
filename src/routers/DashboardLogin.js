@@ -8,6 +8,7 @@ export const DashboardLogin = () => {
     <Routes>
       <Route path="/login" element={<LoginScreen2 />} />
       <Route path="/register" element={<RegisterScreen />} />
+      <Route path="*" element={<h1>Que buscas curioso ?</h1>} />
     </Routes>
   );
 };

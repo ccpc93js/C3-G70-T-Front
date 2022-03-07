@@ -11,13 +11,13 @@ export const LoginScreen2 = () => {
         </div>
         <div
           className="col-md-3 bg-white mx-auto shadow-lg d-flex align-items-center justify-content-center"
-          style={{borderRadius: "1rem", height: "31rem", minWidth: "300px" }}
+          style={{ borderRadius: "1rem", height: "31rem", minWidth: "300px" }}
         >
           <div className="form-group text-center   bg-white  ">
             <h1 className="auth__title text-dark mt-3 mb-5 ">Iniciar sesion</h1>
             <input
               type="text"
-              className="form-control  mt-3 auth__input rounded-3"
+              className="form-control mt-3 auth__input rounded-3"
               placeholder="Usuario"
               style={{ color: "black" }}
             />

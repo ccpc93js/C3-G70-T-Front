@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { usersApi } from "../../app/services/users";
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: null,
   token: null,
 };
@@ -30,7 +30,7 @@ const slice = createSlice({
   },
 });
 
-export const {logout} = slice.actions;
+export const { logout } = slice.actions;
 
 export default slice.reducer;
 

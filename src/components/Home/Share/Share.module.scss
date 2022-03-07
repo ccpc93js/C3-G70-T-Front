@@ -1,6 +1,6 @@
 @import "bootswatch/dist/vapor/_variables.scss";
 
-.card{
+.card {
   background-color: rgba(196, 196, 196, 0.2);
 }
 
@@ -20,19 +20,20 @@
       border: 3px solid $dark;
     }
   }
-  input {
+  button {
     height: 100%;
-    padding: 0.6rem 0.25rem;
+    padding: 0.6rem 3rem;
     margin-block: auto;
     margin-left: 1rem;
     border-radius: 2rem;
-    &[type="text"] {
+    width: 90%;
+    outline: none;
+    &[type="button"] {
       color: black;
       background-color: white;
     }
-    &::placeholder {
-      color: rgba(0, 0, 0, 0.7);
-      padding-left: 0.5rem;
+    &:hover {
+      background-color: darken($color: white, $amount: 10);
     }
   }
 }

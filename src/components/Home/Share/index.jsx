@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useCreatePostMutation } from "../../../app/services/posts";
 import { uploadImage } from "../../../app/services/images";
+import toast from "react-hot-toast";
 import styles from "./Share.module.scss";
-import { BiImageAdd } from "react-icons/bi";
 import {
   Card,
   CardImg,
@@ -15,15 +16,16 @@ import {
   ModalBody,
 } from "reactstrap";
 
-export default function Share() {
+export default function Share({ refetch }) {
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState("");
   const [textarea, setTextarea] = useState("");
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const [createPost, { status, isError, isLoading, isSuccess }] =
-    useCreatePostMutation();
+  const user = useSelector((state) => state.auth.user);
+
+  const [createPost] = useCreatePostMutation();
 
   useEffect(() => {
     async function getImageUrl() {
@@ -47,32 +49,27 @@ export default function Share() {
     e.preventDefault();
     if (!title || !textarea || !image) return;
 
-    //post format
-    // const post = {
-    //   userid: "3",
-    //   title: "Mira mi ultima jugada",
-    //   description:
-    //     "Estaba jugando con @juanito y de repente se me aparecio esto:",
-    //   image: "https://picsum.photos/id/1/200/300",
-    //   likes: 654,
-    // };
+    const creatingToast = toast.loading("Creando publicación...");
 
     const imageUrl = await uploadImage(image);
-
-    console.log(textarea, image);
     const post = {
-      userid: 3,
+      userid: user.id,
       title: title,
       description: textarea,
       image: imageUrl,
       likes: 0,
     };
 
-    console.log(post);
-
     const res = await createPost(post);
+    toast.dismiss(creatingToast);
 
-    console.log(res);
+    if (res.data.ok) {
+      toast.success("Publicación creada correctamente");
+      toggleModal();
+      refetch();
+    } else {
+      toast.error("Error al crear publicación");
+    }
   };
 
   return (

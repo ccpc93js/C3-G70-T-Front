@@ -24,7 +24,7 @@ export default function Post() {
       >
         <IoMdArrowRoundBack />
       </button>
-      <PubCard pub={data.post} />
+      <PubCard pub={data} />
     </div>
   );
 }

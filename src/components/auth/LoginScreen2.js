@@ -13,11 +13,10 @@ export const LoginScreen2 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await login({
+    await login({
       email,
       password,
     });
-    console.log(response);
     if (!error) {
       console.log("Login Error: ", error);
     }
@@ -43,7 +42,7 @@ export const LoginScreen2 = () => {
   }
 
   return (
-    <div className="row align-items-center h-100 m-0 p-0">
+    <div className="row align-items-center h-100 m-0 p-0 auth__form">
       <div className="col-md-6 d-none d-md-block p-0">
         <CarrouselImgs />
       </div>

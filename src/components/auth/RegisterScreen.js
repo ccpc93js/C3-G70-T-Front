@@ -39,7 +39,7 @@ export const RegisterScreen = () => {
   };
 
   return (
-    <div className="row align-items-center h-100 m-0 p-0">
+    <div className="row align-items-center h-100 m-0 p-0 auth__form">
       <div className="col-md-6 d-none d-md-block p-0">
         <CarrouselImgs />
       </div>

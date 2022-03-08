@@ -15,7 +15,6 @@ export default function Feed() {
         setPubs((prev) => [pub, ...prev]);
       });
     }
-    console.log(data);
   }, [data]); // eslint-disable-line
 
   useEffect(() => {

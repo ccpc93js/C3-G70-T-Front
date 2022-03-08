@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "./../../app/services/users";
 import { CarrouselImgs } from "../CarrouselImgs/CarrouselImgs";
@@ -7,18 +8,28 @@ import { FcGoogle } from "react-icons/fc";
 export const LoginScreen2 = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [login, { loading, error }] = useLoginMutation();
+  const [login] = useLoginMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await login({
+    const loginToast = toast.loading("Iniciando sesión...");
+    setLoading(true);
+
+    const res = await login({
       email,
       password,
     });
-    if (!error) {
-      console.log("Login Error: ", error);
+
+
+    setLoading(false);
+    toast.dismiss(loginToast);
+    if (res.error) {
+      toast.error(res.error.data.msg);
+    } else {
+      toast.success(`Bienvenido ${res.data.username}`);
     }
   };
 
@@ -30,16 +41,6 @@ export const LoginScreen2 = () => {
       setPassword(value);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="container h-100 w-100 d-flex justify-content-center align-item-center ">
-        <div className="spinner-border text-primary" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="row align-items-center h-100 m-0 p-0 auth__form">
@@ -72,6 +73,7 @@ export const LoginScreen2 = () => {
             <button
               className="btn btn-primary rounded-pill"
               onClick={handleSubmit}
+              disabled={loading}
             >
               Iniciar sesion
             </button>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Avatar from "../../../Avatar";
 import {
   Card,
   CardHeader,
@@ -17,7 +18,8 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes } = pub;
+  const { avatar, id, title, description, posted, image, likes, user } = pub;
+
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
@@ -62,9 +64,13 @@ export default function PubCard({ pub }) {
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
-        <img src={avatar} alt={id} className="rounded-circle" />
+        {user ? (
+          <Avatar id={user.userid} />
+        ) : (
+          <img src={avatar} alt={id} className="rounded-circle" width="50" />
+        )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{id}</CardTitle>
+          <CardTitle>{title}</CardTitle>
           <CardText>{formatDate(posted)}</CardText>
         </div>
       </CardHeader>

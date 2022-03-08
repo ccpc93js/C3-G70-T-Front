@@ -7,6 +7,7 @@ export const postApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       headers.set("Authorization", `Bearer ${token}`);
+      headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
@@ -32,6 +33,12 @@ export const postApi = createApi({
         body: post,
       }),
     }),
+    deletePost: builder.mutation({
+      query: (id) => ({
+        url: `delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -40,4 +47,5 @@ export const {
   useGetPostQuery,
   useCreatePostMutation,
   useUpdatePostMutation,
+  useDeletePostMutation,
 } = postApi;

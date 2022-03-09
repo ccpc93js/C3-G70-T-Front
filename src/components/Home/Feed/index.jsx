@@ -11,6 +11,7 @@ export default function Feed() {
 
   useEffect(() => {
     if (data) {
+      setPubs([]);
       data.forEach((pub) => {
         setPubs((prev) => [pub, ...prev]);
       });

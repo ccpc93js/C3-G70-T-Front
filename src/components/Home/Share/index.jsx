@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Avatar from "../../Avatar";
 import { useSelector } from "react-redux";
 import { useCreatePostMutation } from "../../../app/services/posts";
 import { uploadImage } from "../../../app/services/images";
@@ -6,7 +7,6 @@ import toast from "react-hot-toast";
 import styles from "./Share.module.scss";
 import {
   Card,
-  CardImg,
   CardBody,
   FormGroup,
   Label,
@@ -76,16 +76,14 @@ export default function Share({ refetch }) {
     <Card className={styles.card}>
       <CardBody>
         <FormGroup className={styles.share}>
-          <Label htmlFor="post">
-            <CardImg
-              src="https://randomuser.me/api/portraits/med/men/83.jpg"
-              alt="avatar"
-            />
+          <Label htmlFor="post" className={styles.avatar}>
+            <Avatar id={user.id} />
           </Label>
           <Button
             className="btn-outline-Primary"
             type="button"
             onClick={toggleModal}
+
           >
             Crear publicacion
           </Button>

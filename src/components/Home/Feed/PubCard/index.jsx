@@ -64,8 +64,8 @@ export default function PubCard({ pub }) {
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
-        {user ? (
-          <Avatar id={user.userid} />
+        {!avatar ? (
+          <Avatar />
         ) : (
           <img src={avatar} alt={id} className="rounded-circle" width="50" />
         )}

@@ -7,7 +7,7 @@ import Spinner from "../../Spinner";
 
 export default function Feed() {
   const { data: pubs, isLoading } = useGetPostsQuery();
-
+  
   return (
     <div className={styles.container}>
       <Share />

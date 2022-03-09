@@ -83,6 +83,7 @@ export default function Share({ refetch }) {
             className="btn-outline-Primary"
             type="button"
             onClick={toggleModal}
+
           >
             Crear publicacion
           </Button>

@@ -12,7 +12,6 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText,
 } from "reactstrap";
 
 export default function Sidebar() {
@@ -26,7 +25,6 @@ export default function Sidebar() {
     if (data) {
       setUserData(data);
     }
-    console.log("Data:", data);
   }, [data]);
 
   return (
@@ -42,19 +40,14 @@ export default function Sidebar() {
         <div className={styles.profile__headerAvatar}>
           <Avatar id={user.id} />
         </div>
-        <CardTitle>Jeff Bezos</CardTitle>
+        <CardTitle>{userData?.nickname}</CardTitle>
         <CardSubtitle className={styles.profile__subtitle}>
-          Fornite - CS Go
+          {userData?.username}
         </CardSubtitle>
       </CardHeader>
       <Collapse isOpen={isOpen}>
         <CardBody className="d-flex flex-column align-items-center pb-0">
-          <CardText className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            posuere erat a ante.
-          </CardText>
-          <h3>Juan Martin</h3>
-          <p>@juanmartin</p>
+          <p>{userData?.emial}</p>
         </CardBody>
       </Collapse>
       <span onClick={toggle} className="btn mx-auto w-100 pt-0 text-white">

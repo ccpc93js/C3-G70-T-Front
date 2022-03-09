@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loginFromLS } from "./features/auth/authSlice";
+import { Toaster } from "react-hot-toast";
 import "bootswatch/dist/vapor/bootstrap.min.css";
 
 import { AppRouter } from "./routers/AppRouter";
@@ -16,7 +17,12 @@ function App() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <AppRouter />;
+  return (
+    <>
+      <AppRouter />
+      <Toaster />
+    </>
+  );
 }
 
 export default App;

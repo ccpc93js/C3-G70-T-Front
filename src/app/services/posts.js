@@ -7,6 +7,7 @@ export const postApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       headers.set("Authorization", `Bearer ${token}`);
+      headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
@@ -26,10 +27,23 @@ export const postApi = createApi({
       }),
     }),
     updatePost: builder.mutation({
-      query: (post) => ({
-        url: `edit/${post.id}`,
+      query: ({post, id}) => ({
+        url: `edit/${id}`,
         method: "PUT",
         body: post,
+      }),
+    }),
+    updatePostLikes: builder.mutation({
+      query: ({post, id}) => ({
+        url: `likes/${id}`,
+        method: "PUT",
+        body: post,
+      }),
+    }),
+    deletePost: builder.mutation({
+      query: (id) => ({
+        url: `delete/${id}`,
+        method: "DELETE",
       }),
     }),
   }),
@@ -40,4 +54,6 @@ export const {
   useGetPostQuery,
   useCreatePostMutation,
   useUpdatePostMutation,
+  useDeletePostMutation,
+  useUpdatePostLikesMutation,
 } = postApi;

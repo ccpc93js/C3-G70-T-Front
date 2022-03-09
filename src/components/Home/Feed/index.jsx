@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Share from "./../Share";
 import Card from "./PubCard";
 import styles from "./Feed.module.scss";
@@ -6,17 +6,31 @@ import { useGetPostsQuery } from "../../../app/services/posts";
 import Spinner from "../../Spinner";
 
 export default function Feed() {
-  const { data: pubs, isLoading } = useGetPostsQuery();
-  
+  const { data, isLoading, refetch } = useGetPostsQuery();
+  const [pubs, setPubs] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setPubs([]);
+      data.forEach((pub) => {
+        setPubs((prev) => [pub, ...prev]);
+      });
+    }
+  }, [data]); // eslint-disable-line
+
+  useEffect(() => {
+    refetch();
+  }, []); // eslint-disable-line
+
   return (
     <div className={styles.container}>
-      <Share />
+      <Share refetch={refetch} />
 
-      {isLoading && (
-        <Spinner />
-      )}
+      {isLoading && <Spinner />}
 
-      {pubs && pubs.map((pub) => <Card pub={pub} key={pub.id} />)}
+      {pubs.map((pub) => (
+        <Card pub={pub} key={pub.id} />
+      ))}
     </div>
   );
 }

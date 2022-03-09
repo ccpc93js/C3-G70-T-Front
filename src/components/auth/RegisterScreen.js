@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "./../../app/services/users";
 
@@ -10,21 +11,31 @@ export const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [register, { loading, error }] = useRegisterMutation();
+  const [register] = useRegisterMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const registerToast = toast.loading("Registrando...");
+    setIsLoading(true);
 
     const response = await register({
       email,
       password,
       name,
     });
-    console.log(response);
-    if (!error) {
-      navigate("/");
+
+    setIsLoading(false);
+    toast.dismiss(registerToast);
+    if (response.error) {
+      toast.error(response.error.data.msg);
+    } else {
+      toast.success("Registro exitoso");
+      navigate("/login");
     }
+
   };
 
   const handleChange = (e) => {
@@ -39,7 +50,7 @@ export const RegisterScreen = () => {
   };
 
   return (
-    <div className="row align-items-center h-100 m-0 p-0">
+    <div className="row align-items-center h-100 m-0 p-0 auth__form">
       <div className="col-md-6 d-none d-md-block p-0">
         <CarrouselImgs />
       </div>
@@ -77,6 +88,7 @@ export const RegisterScreen = () => {
             <button
               onClick={handleSubmit}
               className="btn btn-primary rounded-pill"
+              disabled={isLoading}
             >
               Registrar
             </button>

@@ -56,7 +56,7 @@ export default function Share() {
               <textarea className="rounded-3 w-100" placeholder="¿Que quieres contar?" id="textarea" onChange={handleTextarea}></textarea>
               <input id='fileid' type='file' hidden accept="image/*"  onChange={handleImage}/>
               <div className="d-flex justify-content-end">
-              <label for="fileid" id="LblBrowse" style={{fontSize:"2rem", width:"2.5rem"}}>
+              <label htmlFor="fileid" id="LblBrowse" style={{fontSize:"2rem", width:"2.5rem"}}>
                 <BiImageAdd />
               </label>
               </div>

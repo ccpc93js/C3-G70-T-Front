@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
 import {
   Card,
@@ -18,13 +19,30 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes, user } = pub;
-
+  const { avatar, id, title, description, posted, image, likes } = pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
-
   const { id: isDetails } = useParams();
+  const [updatePostLikes] = useUpdatePostLikesMutation();
+  const notInitialRender = useRef(false);
+
+  const handleLikeUpdate = async (likes) => {
+    await updatePostLikes({
+      id: id,
+      post: {
+        likes: likes,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (notInitialRender.current) {
+      handleLikeUpdate(likesCount);
+    } else {
+      notInitialRender.current = true;
+    }
+  }, [likesCount]); // eslint-disable-line
 
   const formatDate = (date) => {
     const dateObj = new Date(date);

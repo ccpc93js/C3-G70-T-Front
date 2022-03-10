@@ -8,12 +8,12 @@ import {
 } from "../../app/services/posts";
 import Spinner from "../Spinner";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 export default function Post() {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetPostQuery(id);
-  const [deletePost, { status }] = useDeletePostMutation();
+  const [deletePost] = useDeletePostMutation();
 
   const navigate = useNavigate();
 
@@ -22,18 +22,19 @@ export default function Post() {
   if (isError) return <div>Error!</div>;
 
   const handleDelete = async () => {
-    // ask for confirmation
     const confirmed = window.confirm(
       "¿Estás seguro de querer eliminar esta publicación?"
     );
-
     if (!confirmed) return;
-
     const { data } = await deletePost(id);
     if (data) {
       toast.success("Post deleted successfully");
       navigate("/");
     }
+  };
+
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
   };
 
   return (
@@ -46,15 +47,26 @@ export default function Post() {
         >
           <IoMdArrowRoundBack />
         </button>
-        <button
-          className="btn btn-danger py-0 px-1"
-          onClick={handleDelete}
-          style={{ fontSize: "1.5rem" }}
-        >
-          <AiFillDelete />
-        </button>
+        <div className="d-flex gap-3">
+          <button
+            className="btn btn-warning py-0 px-1"
+            onClick={handleEdit}
+            style={{ fontSize: "1.5rem" }}
+          >
+            <AiFillEdit />
+          </button>
+          <button
+            className="btn btn-danger py-0 px-1"
+            onClick={handleDelete}
+            style={{ fontSize: "1.5rem" }}
+          >
+            <AiFillDelete />
+          </button>
+        </div>
       </div>
-      <PubCard pub={data} />
+      <div className="pb-5">
+        <PubCard pub={data} />
+      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes, username } =
+  const { avatar, id, title, description, posted, image, likes, username, userid } =
     pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
@@ -45,7 +45,6 @@ export default function PubCard({ pub }) {
       notInitialRender.current = true;
     }
   }, [likesCount]); // eslint-disable-line
-
 
   const handleLike = () => {
     if (disliked) {
@@ -79,7 +78,7 @@ export default function PubCard({ pub }) {
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
         {!avatar ? (
-          <Avatar />
+          <Avatar id={userid} />
         ) : (
           <img src={avatar} alt={id} className="rounded-circle" width="50" />
         )}

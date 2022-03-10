@@ -19,7 +19,8 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes } = pub;
+  const { avatar, id, title, description, posted, image, likes, username } =
+    pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
@@ -88,12 +89,14 @@ export default function PubCard({ pub }) {
           <img src={avatar} alt={id} className="rounded-circle" width="50" />
         )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle>{username}</CardTitle>
           <CardText>{formatDate(posted)}</CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <h3>{title}</h3>
+        </CardTitle>
         <CardText>{description}</CardText>
         <CardImg src={image} alt={title} />
 

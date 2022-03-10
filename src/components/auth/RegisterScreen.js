@@ -11,6 +11,7 @@ export const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [register] = useRegisterMutation();
@@ -24,7 +25,8 @@ export const RegisterScreen = () => {
     const response = await register({
       email,
       password,
-      name,
+      username: name,
+      nickname,
     });
 
     setIsLoading(false);
@@ -35,7 +37,6 @@ export const RegisterScreen = () => {
       toast.success("Registro exitoso");
       navigate("/login");
     }
-
   };
 
   const handleChange = (e) => {
@@ -44,8 +45,10 @@ export const RegisterScreen = () => {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
-    } else if (name === "name") {
+    } else if (name === "username") {
       setName(value);
+    } else if (name === "nickname") {
+      setNickname(value);
     }
   };
 
@@ -61,20 +64,28 @@ export const RegisterScreen = () => {
         <div className="form-group text-center bg-white  ">
           <h1 className="auth__title text-dark mt-3 mb-5 ">Registro</h1>
           <input
-            onChange={handleChange}
-            type="text"
-            className="form-control mt-3 auth__input rounded-3"
-            placeholder="Email"
-            style={{ color: "black" }}
-            name="email"
-          />
-          <input
             type="text"
             className="form-control mt-3 auth__input rounded-3"
             placeholder="Usuario"
             style={{ color: "black" }}
             name="username"
             onChange={handleChange}
+          />
+          <input
+            type="text"
+            className="form-control mt-3 auth__input rounded-3"
+            placeholder="Nickname"
+            style={{ color: "black" }}
+            name="nickname"
+            onChange={handleChange}
+          />
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control mt-3 auth__input rounded-3"
+            placeholder="Email"
+            style={{ color: "black" }}
+            name="email"
           />
           <input
             type="password"

@@ -29,38 +29,46 @@ const EditProfile = () => {
     <div className="container bg-white mt-3 rounded-3 p-2">
       <h1 className="text-dark">Editar tu informacion</h1>
       <form className="form-group" onSubmit={handleSubmitEdit}>
-        <div className="mb-3 input-group">
-          <div className="d-flex ">
-            <img src={userData.backgroundImage} alt="" className="w-25" />
-          </div>
+        <div className="row">
+          <div className="mb-3 input-group d-flex flex-column col-4 w-50 ">
+            <img
+              src={userData.backgroundImage}
+              alt=""
+              style={{ width: "15rem", aspectRatio: "1", objectFit: "cover" }}
+            />
 
-          <label htmlFor="filebgid" className="text-dark mx-3">
-            Imagen de portada
-          </label>
-          <input
-            className="form-control mb-1"
-            id="filebgid"
-            name="filebgid"
-            type="file"
-            accept="image/*"
-            onChange={handleBgImageChange}
-            required
-          />
-        </div>
-        <div className="mb-3 input-group">
-          <label htmlFor="fileAvatarid" className="text-dark mx-3">
-            Avatar
-          </label>
-          <input
-            className="form-control mb-1"
-            id="fileAvatarid"
-            name="fileAvatarid"
-            type="file"
-            accept="image/*"
-            onChange={handleAvatarChange}
-            required
-          />
-          {/* <div className="d-flex ">
+            <label htmlFor="filebgid" className="text-dark mx-3 w-100 my-2">
+              Imagen de portada
+            </label>
+            <input
+              className="form-control mb-1 w-100"
+              id="filebgid"
+              name="filebgid"
+              type="file"
+              accept="image/*"
+              onChange={handleBgImageChange}
+              required
+            />
+          </div>
+          <div className="mb-3 input-group  d-flex flex-column col-4 w-50 justify-content-between ">
+            <img
+              src={userData.avatar}
+              alt=""
+              style={{ width: "15rem", aspectRatio: "1", objectFit: "cover" }}
+            />
+            <label htmlFor="fileAvatarid" className="text-dark mx-3 w-100 my-2">
+              Avatar
+            </label>
+            <input
+              className="form-control mb-1 w-100"
+              id="fileAvatarid"
+              name="fileAvatarid"
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              required
+            />
+            {/* <div className="d-flex ">
                     {imageUrl && (
                       <img
                         src={imageUrl}
@@ -69,6 +77,7 @@ const EditProfile = () => {
                       />
                     )}
                   </div> */}
+          </div>
         </div>
         <div className="form-floating mb-3">
           <input
@@ -99,10 +108,14 @@ const EditProfile = () => {
             Nickname
           </label>
         </div>
-
-        <button className="btn btn-success align-items-end" type="submit">
-          Guardar cambios
-        </button>
+        <div className="d-flex" style={{ justifyContent: "space-between" }}>
+          <button className="btn btn-danger" type="submit">
+            Cancelar
+          </button>
+          <button className="btn btn-success" type="submit">
+            Guardar cambios
+          </button>
+        </div>
       </form>
     </div>
   );

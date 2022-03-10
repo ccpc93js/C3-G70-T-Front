@@ -4,6 +4,8 @@ import NavBar from "../components/NavBar/NavBar";
 import Home from "../components/Home";
 import Post from "../components/Post";
 import Edit from "../components/Post/Edit";
+import UserProfile from "../components/UserProfile/UserProfile";
+import EditProfile from "../components/UserProfile/EditProfile/EditProfile";
 
 export const DashboardRoutes = () => {
   return (
@@ -11,7 +13,8 @@ export const DashboardRoutes = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/user" element={<h1>User</h1>} />
+        <Route path="/user" element={<UserProfile />} />
+        <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="*" element={<h1>404</h1>} />

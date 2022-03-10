@@ -22,11 +22,13 @@ export default function Edit() {
     const creatingToast = toast.loading("Editando publicación...");
 
     const res = await updatePost({post, id});
+
+    console.log(res);
     toast.dismiss(creatingToast);
 
     if (res.data.ok) {
       toast.success("Publicación editada correctamente");
-      navigate(`/post`);
+      navigate(`/`);
     } else {
       toast.error("Error al editar publicación");
     }

@@ -43,6 +43,8 @@ export default function EditForm({
 
     const imageURI = image ? await uploadImage(image) : imageUrl;
 
+    console.log(imageURI);
+
     handleEdit({
       title,
       description: textarea,

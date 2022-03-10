@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
+import timeAgo from "./timeAgo";
 import {
   Card,
   CardHeader,
@@ -19,7 +20,8 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes } = pub;
+  const { avatar, id, title, description, posted, image, likes, username, userid } =
+    pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
@@ -43,13 +45,6 @@ export default function PubCard({ pub }) {
       notInitialRender.current = true;
     }
   }, [likesCount]); // eslint-disable-line
-
-  const formatDate = (date) => {
-    const dateObj = new Date(date);
-    const dateFormatted = dateObj.toLocaleDateString();
-    const timeFormatted = dateObj.toLocaleTimeString();
-    return `${dateFormatted} ${timeFormatted}`;
-  };
 
   const handleLike = () => {
     if (disliked) {
@@ -83,17 +78,19 @@ export default function PubCard({ pub }) {
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
         {!avatar ? (
-          <Avatar />
+          <Avatar id={userid} />
         ) : (
           <img src={avatar} alt={id} className="rounded-circle" width="50" />
         )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{title}</CardTitle>
-          <CardText>{formatDate(posted)}</CardText>
+          <CardTitle>{username}</CardTitle>
+          <CardText>{timeAgo(posted)}</CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <h3>{title}</h3>
+        </CardTitle>
         <CardText>{description}</CardText>
         <CardImg src={image} alt={title} />
 

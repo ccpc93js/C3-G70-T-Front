@@ -20,8 +20,18 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes, username, userid } =
-    pub;
+  const {
+    avatar,
+    id,
+    title,
+    description,
+    posted,
+    image,
+    likes,
+    username,
+    user,
+    userid,
+  } = pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
@@ -37,6 +47,8 @@ export default function PubCard({ pub }) {
       },
     });
   };
+
+  console.log(pub);
 
   useEffect(() => {
     if (notInitialRender.current) {
@@ -77,13 +89,13 @@ export default function PubCard({ pub }) {
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
-        {!avatar ? (
+        {!(avatar || user?.avatar) ? (
           <Avatar id={userid} />
         ) : (
-          <img src={avatar} alt={id} className="rounded-circle" width="50" />
+          <img src={avatar || user?.avatar} alt={id} className="rounded-circle" width="50" />
         )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{username}</CardTitle>
+          <CardTitle>{username || user?.username}</CardTitle>
           <CardText>{timeAgo(posted)}</CardText>
         </div>
       </CardHeader>

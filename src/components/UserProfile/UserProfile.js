@@ -5,72 +5,79 @@ import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { useGetPostsQuery } from "../../app/services/posts";
 
-import img222 from "../../img/img222.jpg";
+import PubCard from "../Home/Feed/PubCard";
+
+import bgDefault from "../../img/bgDefault.jpg";
+import Avatar from "../Avatar";
 import Share from "../Home/Share";
+import { useGetUserQuery } from "../../app/services/users";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const { data } = useGetPostsQuery();
   const { user } = useSelector((state) => state.auth);
   const postProfile = data.filter((e) => e.userid === user.id);
-  console.log(postProfile);
+
+  const { data: userData } = useGetUserQuery(user.id);
+
+  const userBgImage = userData.backgroundImage;
+
+  const navigate = useNavigate();
 
   return (
     <Container>
       <Row className="mt-3">
-        <Col sm={12} md={12}>
-          <img src={img222} className="w-100 rounded-3" alt="background" />
-        </Col>
+        <img
+          src={userBgImage || bgDefault}
+          alt="background"
+          style={{
+            width: "100%",
+            aspectRatio: "64/9",
+            objectFit: "cover",
+            borderRadius: "16px 16px 0 0",
+            marginBottom: "0",
+          }}
+        />
       </Row>
       <Row
-        className="mt-3 mx-0 rounded-3 p-4 d-flex align-items-center justify-content-evenly"
-        style={{ backgroundColor: "white" }}
+        className=" mx-0 p-4 d-flex align-items-center justify-content-evenly"
+        style={{ backgroundColor: "white", borderRadius: "0 0 16px 16px" }}
       >
         <Col sm={12} md={2}>
-          <img
-            src="https://randomuser.me/api/portraits/med/men/83.jpg"
-            alt="avatar"
-            className="img-thumbnail rounded-pill"
-          />
+          <Avatar id={user.id} />
         </Col>
         <Col sm={12} md={7} className="text-dark">
           <h1 className="text-dark">{user.username}</h1>
-          <p>Breve descripcion de mi perfil</p>
+          <p>{userData.nickname}</p>
         </Col>
         <Col sm={12} md={3}>
-          <button className="btn btn-primary" type="button">
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => navigate("/editProfile")}
+          >
             <VscEdit style={{ marginRight: "0.5rem" }} /> Editar Perfil
           </button>
         </Col>
       </Row>
-      <Row className="row mx-0 mt-4 d-flex justify-content-between align-items-center ">
-        <Col
-          sm={12}
-          md={5}
-          style={{ backgroundColor: "white", textAlign: "center" }}
-          className="rounded-3"
-        >
-          <h3 className="text-dark mt-1">Seguidores</h3>
-          <p>Card Followers</p>
+      <Row className="row mx-0 mt-3">
+        <Col sm={12} md={3} style={{ textAlign: "center" }}>
+          <h3 className="text-dark mt-1 bg-white p-2 rounded-3">Seguidores</h3>
         </Col>
         <Col
           sm={12}
-          md={5}
-          style={{ backgroundColor: "white", textAlign: "center" }}
+          md={6}
           className="rounded-3"
-        >
-          <h3 className="text-dark mt-1">Seguidos</h3>
-          <p>Card Following</p>
-        </Col>
-      </Row>
-      <Row className="justify-content-center align-items-center mt-5">
-        <Col
-          sm={12}
-          md={8}
-          className="rounded-3 "
           style={{ textAlign: "center" }}
         >
           <Share className="rounded-3" />
-          <h2 className="text-dark bg-white mt-3">Tus publicaciones</h2>
+
+          {postProfile.reverse().map((pub) => (
+            <PubCard pub={pub} key={pub.id} />
+          ))}
+        </Col>
+        <Col sm={12} md={3} style={{ textAlign: "center" }}>
+          <h3 className="text-dark mt-1 bg-white p-2 rounded-3">Seguidos</h3>
         </Col>
       </Row>
     </Container>

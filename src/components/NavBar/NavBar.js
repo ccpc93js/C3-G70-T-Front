@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <Navbar expand="sm" dark className="NavBar align-middle">
       <Link className="navbar-brand px-2" style={{ fontSize: "2rem" }} to="/">
-        {icons.logo}
+        {icons.logo}nGamers
       </Link>
       <NavbarToggler onClick={() => setOpen(!open)} />
       <Collapse navbar isOpen={open}>

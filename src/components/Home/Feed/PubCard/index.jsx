@@ -20,7 +20,7 @@ import {
 import styles from "./PubCard.module.scss";
 
 export default function PubCard({ pub }) {
-  const { avatar, id, title, description, posted, image, likes, username, userid } =
+  const { avatar, id, title, description, posted, image, likes, username, user, userid } =
     pub;
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
@@ -28,6 +28,8 @@ export default function PubCard({ pub }) {
   const { id: isDetails } = useParams();
   const [updatePostLikes] = useUpdatePostLikesMutation();
   const notInitialRender = useRef(false);
+
+  
 
   const handleLikeUpdate = async (likes) => {
     await updatePostLikes({
@@ -83,7 +85,7 @@ export default function PubCard({ pub }) {
           <img src={avatar} alt={id} className="rounded-circle" width="50" />
         )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{username}</CardTitle>
+          <CardTitle>{username || user.username}</CardTitle>
           <CardText>{timeAgo(posted)}</CardText>
         </div>
       </CardHeader>

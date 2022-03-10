@@ -48,7 +48,7 @@ export default function PubCard({ pub }) {
     });
   };
 
-  console.log(pub);
+ 
 
   useEffect(() => {
     if (notInitialRender.current) {

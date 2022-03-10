@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useGetUserQuery } from "../../../app/services/users";
+import {
+  useGetUserQuery,
+  useUpdateMutation,
+} from "../../../app/services/users";
 import toast from "react-hot-toast";
+import { uploadImage } from "../../../app/services/images";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+  const [updateProfile] = useUpdateMutation();
+  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.auth);
   const { data: userData } = useGetUserQuery(user.id);
 
@@ -11,18 +19,64 @@ const EditProfile = () => {
   const [nickname, setNickname] = useState(userData.nickname);
   const [avatar, setAvatar] = useState("");
   const [bgImage, setBgImage] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState(userData.avatar);
+  const [bgImageUrl, setBgImageUrl] = useState(userData.backgroundImage);
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handleNicknameChange = (e) => setNickname(e.target.value);
-  const handleAvatarChange = (e) => setAvatar(e.target.files);
-  const handleBgImageChange = (e) => setBgImage(e.target.files);
+  const handleAvatarChange = (e) => setAvatar(e.target.files[0]);
+  const handleBgImageChange = (e) => setBgImage(e.target.files[0]);
 
-  console.log(userData);
+  useEffect(() => {
+    async function getImageUrl() {
+      if (avatar) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(avatar);
+        fileReader.onload = () => {
+          setAvatarUrl(fileReader.result);
+        };
+      }
+    }
+    getImageUrl();
+  }, [avatar]);
+
+  useEffect(() => {
+    async function getImageUrl() {
+      if (bgImage) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(bgImage);
+        fileReader.onload = () => {
+          setBgImageUrl(fileReader.result);
+        };
+      }
+    }
+    getImageUrl();
+  }, [bgImage]);
 
   const handleSubmitEdit = async (e) => {
-    if (!username || !nickname || !avatar || !bgImage) return;
+    e.preventDefault();
+    if (!username || !nickname) return;
 
     const creatingToast = toast.loading("Guardando informacion...");
+
+    const avatarURI = avatar ? await uploadImage(avatar) : avatarUrl;
+    const bgImageURI = bgImage ? await uploadImage(bgImage) : bgImageUrl;
+
+    const profileUpdated = {
+      id: userData.id,
+      username,
+      nickname,
+      avatar: avatarURI,
+      backgroundImage: bgImageURI,
+    };
+    const res = await updateProfile(profileUpdated);
+    toast.dismiss(creatingToast);
+    if (res.data.ok) {
+      toast.success("Perfil editado correctamente");
+      navigate(`/user`);
+    } else {
+      toast.error("Error al editar perfil");
+    }
   };
 
   return (
@@ -32,7 +86,7 @@ const EditProfile = () => {
         <div className="row">
           <div className="mb-3 input-group d-flex flex-column col-4 w-50 ">
             <img
-              src={userData.backgroundImage}
+              src={bgImageUrl}
               alt=""
               style={{ width: "15rem", aspectRatio: "1", objectFit: "cover" }}
             />
@@ -47,12 +101,11 @@ const EditProfile = () => {
               type="file"
               accept="image/*"
               onChange={handleBgImageChange}
-              required
             />
           </div>
           <div className="mb-3 input-group  d-flex flex-column col-4 w-50 justify-content-between ">
             <img
-              src={userData.avatar}
+              src={avatarUrl}
               alt=""
               style={{ width: "15rem", aspectRatio: "1", objectFit: "cover" }}
             />
@@ -66,17 +119,7 @@ const EditProfile = () => {
               type="file"
               accept="image/*"
               onChange={handleAvatarChange}
-              required
             />
-            {/* <div className="d-flex ">
-                    {imageUrl && (
-                      <img
-                        src={imageUrl}
-                        alt=""
-                        className={styles.modal__image}
-                      />
-                    )}
-                  </div> */}
           </div>
         </div>
         <div className="form-floating mb-3">
@@ -109,7 +152,11 @@ const EditProfile = () => {
           </label>
         </div>
         <div className="d-flex" style={{ justifyContent: "space-between" }}>
-          <button className="btn btn-danger" type="submit">
+          <button
+            className="btn btn-danger"
+            type="button"
+            onClick={() => navigate("/user")}
+          >
             Cancelar
           </button>
           <button className="btn btn-success" type="submit">

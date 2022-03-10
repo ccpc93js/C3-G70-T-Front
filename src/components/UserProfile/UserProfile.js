@@ -47,7 +47,7 @@ const UserProfile = () => {
           <Avatar id={user.id} />
         </Col>
         <Col sm={12} md={7} className="text-dark">
-          <h1 className="text-dark">{user.username}</h1>
+          <h1 className="text-dark">{userData.username}</h1>
           <p>{userData.nickname}</p>
         </Col>
         <Col sm={12} md={3}>

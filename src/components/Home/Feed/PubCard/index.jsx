@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
+import timeAgo from "./timeAgo";
 import {
   Card,
   CardHeader,
@@ -45,12 +46,6 @@ export default function PubCard({ pub }) {
     }
   }, [likesCount]); // eslint-disable-line
 
-  const formatDate = (date) => {
-    const dateObj = new Date(date);
-    const dateFormatted = dateObj.toLocaleDateString();
-    const timeFormatted = dateObj.toLocaleTimeString();
-    return `${dateFormatted} ${timeFormatted}`;
-  };
 
   const handleLike = () => {
     if (disliked) {
@@ -90,7 +85,7 @@ export default function PubCard({ pub }) {
         )}
         <div className={styles.cardHeader__info}>
           <CardTitle>{username}</CardTitle>
-          <CardText>{formatDate(posted)}</CardText>
+          <CardText>{timeAgo(posted)}</CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>

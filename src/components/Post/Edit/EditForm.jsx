@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { uploadImage } from "../../../app/services/images";
 
-export default function EditForm({ postTitle, postDescription, postImage, handleCancel }) {
+export default function EditForm({
+  postTitle,
+  postDescription,
+  postImage,
+  handleCancel,
+  handleEdit,
+}) {
   const [title, setTitle] = useState(postTitle);
   const [textarea, setTextarea] = useState(postDescription);
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(postImage);
 
-  const handleEdit = () => {
-    console.log("Editando");
-  };
+  useEffect(() => {
+    async function getImageUrl() {
+      if (image) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(image);
+        fileReader.onload = () => {
+          setImageUrl(fileReader.result);
+        };
+      }
+    }
+    getImageUrl();
+  }, [image]);
 
   const handleChange = (e) => {
     if (e.target.name === "title") {
@@ -20,10 +36,24 @@ export default function EditForm({ postTitle, postDescription, postImage, handle
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!title || !textarea) return;
+
+    const imageURI = image ? await uploadImage(image) : imageUrl;
+
+    handleEdit({
+      title,
+      description: textarea,
+      image: imageURI,
+    });
+  };
+
   return (
     <form
       className="form-group mx-auto m-4"
-      onSubmit={handleEdit}
+      onSubmit={handleSubmit}
       style={{ maxWidth: "30rem" }}
     >
       <div className="form-floating mb-3">
@@ -54,19 +84,31 @@ export default function EditForm({ postTitle, postDescription, postImage, handle
       </div>
       <div className="mb-3 input-group">
         <input
-          className="form-control mb-1"
-          id="fileid"
-          name="fileid"
+          className="form-control mb-1 w-100"
+          id="image"
+          name="image"
           type="file"
           accept="image/*"
           onChange={handleChange}
-          required
+          
+          
         />
-        <div className="d-flex ">
-          {imageUrl && <img src={imageUrl} alt="" />}
+        <div className="d-flex w-100">
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt="description"
+              width="80%"
+              className="mx-auto"
+            />
+          )}
         </div>
       </div>
-      <button className="btn btn-info me-2" type="button" onClick={handleCancel}>
+      <button
+        className="btn btn-info me-2"
+        type="button"
+        onClick={handleCancel}
+      >
         Cancelar
       </button>
       <button className="btn btn-warning" type="submit">

@@ -4,12 +4,10 @@ import {  useDeleteFollowerMutation } from '../../../app/services/followers';
 
 
 const UnfollowButton = ({idVinculo}) => {
-  const [deleteFollower] = useDeleteFollowerMutation(idVinculo)
-  console.log(idVinculo,"idvinculo")
-  
+  const [deleteFollower] = useDeleteFollowerMutation()
+
   const handleUnfollow = async () => {
-      const res = await deleteFollower()
-      console.log(res, "delete")
+      const res = await deleteFollower(idVinculo)
   };
 
   return (

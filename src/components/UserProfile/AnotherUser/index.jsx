@@ -24,7 +24,7 @@ const UserProfile = () => {
   const [esSeguido, setEsSeguido] = useState(false)
   const [idVinculo, setIdVinculo] = useState(null)
 
-
+  console.log(followData)
 
   useEffect(()=>{
     if(followData){
@@ -83,7 +83,7 @@ const UserProfile = () => {
           <p>{userData.nickname}</p>
         </Col>
         <Col sm={12} md={3}>
-          {idVinculo  && <UnfollowButton idVinculo={idVinculo}/>}
+          {idVinculo ? <UnfollowButton idVinculo={idVinculo}/> :<FollowButton />}
         </Col>
       </Row>
       <Row className="row mx-0 mt-3">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
 import timeAgo from "./timeAgo";
@@ -46,6 +47,13 @@ export default function PubCard({ pub }) {
         likes: likes,
       },
     });
+  };
+
+  const handleShare = () => {
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}/post/${id}`;
+    navigator.clipboard.writeText(url);
+    toast.success("Link copiado al portapapeles!");
   };
 
   useEffect(() => {
@@ -132,7 +140,7 @@ export default function PubCard({ pub }) {
             style={{ filter: liked && "grayscale(100%)" }}
           />
         </CardText>
-        <FaShare className={styles.share} />
+        <FaShare className={styles.share} onClick={handleShare} />
       </CardBody>
     </Card>
   );

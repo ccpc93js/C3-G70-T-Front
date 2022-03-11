@@ -4,6 +4,12 @@ export const usersApi = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api-ingamer.herokuapp.com/api/users/",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      headers.set("Authorization", `Bearer ${token}`);
+      headers.set("Content-Type", "application/json");
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     getUsers: builder.query({
@@ -27,6 +33,13 @@ export const usersApi = createApi({
         body: credentials,
       }),
     }),
+    update: builder.mutation({
+      query: (data) => ({
+        url: "profile",
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -35,6 +48,7 @@ export const {
   useRegisterMutation,
   useGetUsersQuery,
   useGetUserQuery,
+  useUpdateMutation,
 } = usersApi;
 
 export const { login } = usersApi;

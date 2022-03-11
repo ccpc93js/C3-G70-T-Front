@@ -48,15 +48,15 @@ export default function Post() {
 
   return (
     <div className="container my-4" style={{ maxWidth: "45rem" }}>
-      {canEdit && (
-        <div className="d-flex justify-content-between">
-          <button
-            className="btn btn-info py-0 px-1"
-            onClick={() => navigate(-1)}
-            style={{ fontSize: "1.5rem" }}
-          >
-            <IoMdArrowRoundBack />
-          </button>
+      <div className="d-flex justify-content-between">
+        <button
+          className="btn btn-info py-0 px-1"
+          onClick={() => navigate(-1)}
+          style={{ fontSize: "1.5rem" }}
+        >
+          <IoMdArrowRoundBack />
+        </button>
+        {canEdit && (
           <div className="d-flex gap-3">
             <button
               className="btn btn-warning py-0 px-1"
@@ -73,8 +73,8 @@ export default function Post() {
               <AiFillDelete />
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
       <div className="pb-5">
         <PubCard pub={data} />
       </div>

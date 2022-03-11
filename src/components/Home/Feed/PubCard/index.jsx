@@ -92,7 +92,6 @@ export default function PubCard({ pub }) {
     }
   };
 
-
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
@@ -107,8 +106,10 @@ export default function PubCard({ pub }) {
           />
         )}
         <div className={styles.cardHeader__info}>
-          <CardTitle>{username || user?.username}</CardTitle>
-          <CardText>{timeAgo(posted)}</CardText>
+          <CardTitle style={{ fontWeight: "500" }}>
+            {username || user?.username}
+          </CardTitle>
+          <CardText style={{ color: "rgba(1, 1, 1, .6)" }}>{timeAgo(posted)}</CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>

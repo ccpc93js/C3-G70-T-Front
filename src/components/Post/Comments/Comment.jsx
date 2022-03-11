@@ -1,15 +1,19 @@
 import React from "react";
+import Avatar from "../../Avatar";
+import { Link } from "react-router-dom";
 
-export default function Comment() {
+export default function Comment({ comment }) {
+  const { username, comment: bodyComent } = comment;
   return (
-    <div className="card border-primary mb-3" style={{ maxWidth: "20rem" }}>
-      <div className="card-header">Header</div>
+    <div className="card mb-3">
+      <div className="d-flex flex-row">
+        <Avatar id={comment.userid} />
+        <Link to={`/user/${comment.userid}`} className="w-100">
+          <div className="card-header w-100">{username}</div>
+        </Link>
+      </div>
       <div className="card-body">
-        <h4 className="card-title">Primary card title</h4>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+        <p className="card-text">{bodyComent}</p>
       </div>
     </div>
   );

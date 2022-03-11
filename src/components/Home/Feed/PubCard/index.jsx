@@ -38,6 +38,8 @@ export default function PubCard({ pub }) {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+
   const { id: isDetails } = useParams();
   const [updatePostLikes] = useUpdatePostLikesMutation();
   const notInitialRender = useRef(false);
@@ -94,6 +96,10 @@ export default function PubCard({ pub }) {
     }
   };
 
+  const handleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
@@ -134,7 +140,7 @@ export default function PubCard({ pub }) {
         )}
       </CardBody>
       <CardBody className={styles.cardFooter}>
-        <FaComment className={styles.comment} />
+        <FaComment className={styles.comment} onClick={handleShowComments} />
         <CardText className={styles.likes}>
           <FaArrowAltCircleDown
             className={styles.down}
@@ -151,7 +157,7 @@ export default function PubCard({ pub }) {
         <FaShare className={styles.share} onClick={handleShare} />
       </CardBody>
       <CardFooter>
-        <Comments id={id} />
+        <Comments id={id} showComments={showComments} />
       </CardFooter>
     </Card>
   );

@@ -13,7 +13,7 @@ export const followersApi = createApi({
   }),
   endpoints: (builder) => ({
     getFollowersOfId: builder.query({
-      query: (id) => `followersToUserid/${id}`,
+      query: (id) => `followingToUserid/${id}`,
     }),
 
     createFollower: builder.mutation({

@@ -74,6 +74,7 @@ const EditProfile = () => {
     if (res.data.ok) {
       toast.success("Perfil editado correctamente");
       navigate(`/user`);
+      window.location.reload(false);
     } else {
       toast.error("Error al editar perfil");
     }
@@ -105,9 +106,14 @@ const EditProfile = () => {
           </div>
           <div className="mb-3 input-group  d-flex flex-column col-4 w-50 justify-content-between ">
             <img
+              className="rounded-pill"
               src={avatarUrl}
               alt=""
-              style={{ width: "15rem", aspectRatio: "1", objectFit: "cover" }}
+              style={{
+                width: "15rem",
+                aspectRatio: "1",
+                objectFit: "cover",
+              }}
             />
             <label htmlFor="fileAvatarid" className="text-dark mx-3 w-100 my-2">
               Avatar

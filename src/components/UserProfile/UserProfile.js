@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { VscEdit } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
@@ -63,7 +63,7 @@ const UserProfile = () => {
       <Row className="row mx-0 mt-3">
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
           <h3
-            className="text-dark mt-1 bg-white p-2 rounded-3"
+            className="btn w-100 text-dark mt-1 bg-white p-2 rounded-3"
             onClick={() => navigate(`/seguidores/${user.id}`)}
           >
             Seguidores
@@ -83,7 +83,7 @@ const UserProfile = () => {
         </Col>
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
           <h3
-            className="text-dark mt-1 bg-white p-2 rounded-3"
+            className="btn w-100 text-dark mt-1 bg-white p-2 rounded-3"
             onClick={() => navigate(`/seguidos/${user.id}`)}
           >
             Seguidos

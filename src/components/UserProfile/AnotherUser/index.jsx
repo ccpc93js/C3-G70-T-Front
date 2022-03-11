@@ -24,7 +24,9 @@ const UserProfile = () => {
   const [esSeguido, setEsSeguido] = useState(false)
   const [idVinculo, setIdVinculo] = useState(null)
 
-  console.log(followData)
+  
+
+
 
   useEffect(()=>{
     if(followData){
@@ -83,12 +85,12 @@ const UserProfile = () => {
           <p>{userData.nickname}</p>
         </Col>
         <Col sm={12} md={3}>
-          {idVinculo ? <UnfollowButton idVinculo={idVinculo}/> :<FollowButton />}
+          {idVinculo ? <UnfollowButton idVinculo={idVinculo}/> :<FollowButton  onClick={""}/>}
         </Col>
       </Row>
       <Row className="row mx-0 mt-3">
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
-          <h3 className="text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidores/${id}`)}>Seguidores</h3>
+          <h3 className="btn w-100 text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidores/${id}`)}>Seguidores</h3>
         </Col>
         <Col
           sm={12}
@@ -101,7 +103,7 @@ const UserProfile = () => {
           ))}
         </Col>
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
-          <h3 className="text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidos/${id}`)}>Seguidos</h3>
+          <h3 className="btn w-100 text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidos/${id}`)}>Seguidos</h3>
         </Col>
       </Row>
     </Container>

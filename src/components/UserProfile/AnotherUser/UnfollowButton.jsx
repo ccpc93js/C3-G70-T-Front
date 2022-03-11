@@ -8,6 +8,8 @@ const UnfollowButton = ({idVinculo}) => {
 
   const handleUnfollow = async () => {
       const res = await deleteFollower(idVinculo)
+      console.log("unfollower done")
+      window.location.reload(false)
   };
 
   return (

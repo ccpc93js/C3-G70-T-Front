@@ -15,7 +15,8 @@ const FollowButton = () => {
         userid: id,
         followerID: actualUserId,
       });
-      console.log(res, "create")
+      console.log("create follower")
+      window.location.reload(false)
   };
 
   return (

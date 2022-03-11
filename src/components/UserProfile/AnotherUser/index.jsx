@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useGetPostsQuery } from "../../../app/services/posts";
@@ -7,29 +8,34 @@ import PubCard from "../../Home/Feed/PubCard";
 import bgDefault from "../../../img/bgDefault.jpg";
 import Avatar from "../../Avatar";
 import { useGetUserQuery } from "../../../app/services/users";
+import { useCreateFollowerMutation } from "../../../app/services/followers";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const UserProfile = () => {
   const { id } = useParams();
+  const actualUserId = useSelector((state) => state.auth.user.id);
   const { data } = useGetPostsQuery();
   const [posts, setPosts] = useState([]);
+  const [createFollower] = useCreateFollowerMutation();
 
   useEffect(() => {
     if (data) {
       const userPosts = data.filter((post) => post.userid === parseInt(id));
-
-      console.log("User post", userPosts);
-
       const postsToState = userPosts.length > 0 ? userPosts.reverse() : [];
-
       setPosts(postsToState);
     }
   }, [data, id]);
 
   const { data: userData } = useGetUserQuery(id);
 
-  const handleFollow = () => {
+  const handleFollow = async () => {
     console.log("Follow");
+    const res = await createFollower({
+      userid: id,
+      followerID: actualUserId,
+    });
+
+    console.log(res);
   };
 
   if (!data || !userData) {

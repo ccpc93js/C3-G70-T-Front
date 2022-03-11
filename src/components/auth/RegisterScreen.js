@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "./../../app/services/users";
-
+import Title from "./Title";
 import { Link } from "react-router-dom";
 import { CarrouselImgs } from "../CarrouselImgs/CarrouselImgs";
 
@@ -53,10 +53,11 @@ export const RegisterScreen = () => {
   };
 
   return (
-    <div className="row align-items-center h-100 m-0 p-0 auth__form">
+    <div className="row align-items-center h-100 m-0 p-0 auth__form position-relative">
       <div className="col-md-6 d-none d-md-block p-0">
         <CarrouselImgs />
       </div>
+      <Title />
       <div
         className="col-md-3 bg-white mx-auto shadow-lg d-flex align-items-center justify-content-center "
         style={{ borderRadius: "1rem", height: "31rem", minWidth: "300px" }}

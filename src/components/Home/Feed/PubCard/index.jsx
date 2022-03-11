@@ -92,11 +92,12 @@ export default function PubCard({ pub }) {
     }
   };
 
+
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
-        {!(avatar || user?.avatar) ? (
-          <Avatar id={userid} />
+        {!avatar || !user?.avatar ? (
+          <Avatar id={userid || user?.userid} />
         ) : (
           <img
             src={avatar || user?.avatar}

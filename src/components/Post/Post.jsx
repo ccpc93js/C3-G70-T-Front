@@ -22,9 +22,7 @@ export default function Post() {
     if (currentUserId === data?.user.userid) {
       setCanEdit(true);
     }
-  }, [currentUserId, data]); // eslint-disable-line
-
-  const dataUserId = data?.user.userid;
+  }, [currentUserId, data]); // eslint-disable-lineI
 
   const navigate = useNavigate();
 

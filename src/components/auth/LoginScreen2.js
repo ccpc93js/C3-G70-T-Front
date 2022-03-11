@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useLoginMutation } from "./../../app/services/users";
 import { CarrouselImgs } from "../CarrouselImgs/CarrouselImgs";
 import { FcGoogle } from "react-icons/fc";
+import Title from "./Title";
 
 export const LoginScreen2 = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,6 @@ export const LoginScreen2 = () => {
       email,
       password,
     });
-
 
     setLoading(false);
     toast.dismiss(loginToast);
@@ -43,15 +43,16 @@ export const LoginScreen2 = () => {
   };
 
   return (
-    <div className="row align-items-center h-100 m-0 p-0 auth__form">
+    <div className="row align-items-center h-100 m-0 p-0 auth__form position-relative">
       <div className="col-md-6 d-none d-md-block p-0">
         <CarrouselImgs />
       </div>
+      <Title />
       <div
         className="col-md-3 bg-white mx-auto shadow-lg d-flex align-items-center justify-content-center"
         style={{ borderRadius: "1rem", height: "31rem", minWidth: "300px" }}
       >
-        <div className="form-group text-center   bg-white  ">
+        <div className="form-group text-center bg-white">
           <h1 className="auth__title text-dark mt-3 mb-5 ">Iniciar sesion</h1>
           <input
             type="text"

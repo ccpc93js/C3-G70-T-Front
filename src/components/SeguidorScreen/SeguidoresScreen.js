@@ -24,7 +24,11 @@ const SeguidoresScreen = () => {
           <div className="d-flex bg-white mx-2 my-2 ">
             <Row className="">
               {followers.map((follower) => (
-                <CardPersona key={follower.followerID} follower={follower} />
+                <CardPersona
+                  key={follower.followerID}
+                  follower={follower}
+                  linkId={follower.followerID}
+                />
               ))}
             </Row>
           </div>

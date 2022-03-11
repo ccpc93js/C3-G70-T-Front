@@ -56,6 +56,7 @@ const NavBar = () => {
               />
             </Col>
           </Form> */}
+
           <NavItem>
             <Link className="nav-link" to="/red">
               {icons.red} Red

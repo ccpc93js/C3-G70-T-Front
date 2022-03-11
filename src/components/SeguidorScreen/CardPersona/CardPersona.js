@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
 
-const CardPersona = ({ follower }) => {
+const CardPersona = ({ follower, linkId }) => {
   const avatarDefault = `https://avatars.dicebear.com/api/pixel-art-neutral/${follower.followerID}.svg`;
-
+  const navigate = useNavigate();
+  console.log(follower);
   return (
     <Card
       style={{
@@ -22,7 +24,10 @@ const CardPersona = ({ follower }) => {
       />
 
       <div className="mt-3 align-items-center justify-content-center text-white text-center">
-        <CardTitle className="d-flex text-center justify-content-center">
+        <CardTitle
+          className="btn d-flex text-center justify-content-center"
+          onClick={() => navigate(`/user/${linkId}`)}
+        >
           {follower.username}
         </CardTitle>
       </div>

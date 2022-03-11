@@ -74,6 +74,7 @@ const EditProfile = () => {
     if (res.data.ok) {
       toast.success("Perfil editado correctamente");
       navigate(`/user`);
+      window.location.reload(false);
     } else {
       toast.error("Error al editar perfil");
     }

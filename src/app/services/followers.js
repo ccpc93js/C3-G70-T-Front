@@ -29,6 +29,12 @@ export const followersApi = createApi({
         body: body,
       }),
     }),
+    deleteFollower: builder.mutation({
+      query: (id) => ({
+        url: `delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -37,4 +43,5 @@ export const {
   useGetFollowersQuery,
   useCreateFollowerMutation,
   useGetFollowsOfIdQuery,
+  useDeleteFollowerMutation,
 } = followersApi;

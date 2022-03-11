@@ -1,12 +1,10 @@
 import React from "react";
 import { VscEdit } from "react-icons/vsc";
 import { useSelector } from "react-redux";
-
 import { Col, Container, Row } from "reactstrap";
 import { useGetPostsQuery } from "../../app/services/posts";
-
+import Spinner from "../Spinner";
 import PubCard from "../Home/Feed/PubCard";
-
 import bgDefault from "../../img/bgDefault.jpg";
 import Avatar from "../Avatar";
 import Share from "../Home/Share";
@@ -14,15 +12,17 @@ import { useGetUserQuery } from "../../app/services/users";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const { data } = useGetPostsQuery();
   const { user } = useSelector((state) => state.auth);
-  const postProfile = data.filter((e) => e.userid === user.id);
-
+  const postProfile = data?.filter((e) => e.userid === user.id);
   const { data: userData } = useGetUserQuery(user.id);
 
-  const userBgImage = userData.backgroundImage;
+  if (!data || !userData) {
+    return <Spinner />;
+  }
 
-  const navigate = useNavigate();
+  const userBgImage = userData?.backgroundImage;
 
   return (
     <Container>

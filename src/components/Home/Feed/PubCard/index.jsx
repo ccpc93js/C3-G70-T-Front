@@ -48,8 +48,6 @@ export default function PubCard({ pub }) {
     });
   };
 
-  console.log(pub);
-
   useEffect(() => {
     if (notInitialRender.current) {
       handleLikeUpdate(likesCount);
@@ -92,7 +90,12 @@ export default function PubCard({ pub }) {
         {!(avatar || user?.avatar) ? (
           <Avatar id={userid} />
         ) : (
-          <img src={avatar || user?.avatar} alt={id} className="rounded-circle" width="50" />
+          <img
+            src={avatar || user?.avatar}
+            alt={id}
+            className="rounded-circle"
+            width="50"
+          />
         )}
         <div className={styles.cardHeader__info}>
           <CardTitle>{username || user?.username}</CardTitle>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import PubCard from "../Home/Feed/PubCard";
+import Comments from "./Comments";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Spinner from "../Spinner";
@@ -17,6 +18,7 @@ export default function Post() {
   const { data, isLoading, isError } = useGetPostQuery(id);
   const [deletePost] = useDeletePostMutation();
   const [canEdit, setCanEdit] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     if (currentUserId === data?.user.userid) {
@@ -44,6 +46,10 @@ export default function Post() {
 
   const handleEdit = () => {
     navigate(`/edit/${id}`);
+  };
+
+  const handleShowComments = () => {
+    setShowComments(!showComments);
   };
 
   return (
@@ -75,9 +81,10 @@ export default function Post() {
           </div>
         )}
       </div>
-      <div className="pb-5">
+      <div className="">
         <PubCard pub={data} />
       </div>
+      {/* <Comments id={id} show={showComments} /> */}
     </div>
   );
 }

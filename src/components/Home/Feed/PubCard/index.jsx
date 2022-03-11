@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
+import Comments from "../../../Post/Comments";
 import timeAgo from "./timeAgo";
 import {
   Card,
@@ -11,6 +12,7 @@ import {
   CardTitle,
   CardText,
   CardImg,
+  CardFooter,
 } from "reactstrap";
 import {
   FaArrowAltCircleDown,
@@ -148,6 +150,9 @@ export default function PubCard({ pub }) {
         </CardText>
         <FaShare className={styles.share} onClick={handleShare} />
       </CardBody>
+      <CardFooter>
+        <Comments id={id} />
+      </CardFooter>
     </Card>
   );
 }

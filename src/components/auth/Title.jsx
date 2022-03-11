@@ -83,7 +83,7 @@ export default function Title() {
   return (
     <h1
       id="container"
-      className="position-absolute top-0 start-50 translate-middle text-warning p-0"
+      className="position-absolute top-0 text-warning p-0"
       style={{
         margin: "6rem 0 0 0",
         width: "auto",
@@ -91,6 +91,7 @@ export default function Title() {
         fontSize: "4rem",
         fontWeight: "700",
         filter: "url(#threshold) blur(0.6px)",
+        transform: "translateY(-13rem)"
       }}
     >
       <span id="text1" className={styles.text}>

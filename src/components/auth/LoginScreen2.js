@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "./../../app/services/users";
 import { CarrouselImgs } from "../CarrouselImgs/CarrouselImgs";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import Title from "./Title";
 
 export const LoginScreen2 = () => {
@@ -84,7 +84,7 @@ export const LoginScreen2 = () => {
               Registrarte
             </Link>
           </div>
-          <div className="d-flex bg-white justify-content-center align-items-center mt-5">
+          {/* <div className="d-flex bg-white justify-content-center align-items-center mt-5">
             <hr className="auth__hr" />
             <div className="text-dark text-center bg-white auth__hrtext">
               &nbsp; o &nbsp;
@@ -102,7 +102,7 @@ export const LoginScreen2 = () => {
               />
               &nbsp; Google
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

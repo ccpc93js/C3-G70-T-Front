@@ -15,6 +15,9 @@ export const followersApi = createApi({
     getFollowersOfId: builder.query({
       query: (id) => `followingToUserid/${id}`,
     }),
+    getFollowsOfId: builder.query({
+      query: (id) => `followersToUserid/${id}`,
+    }),
 
     createFollower: builder.mutation({
       query: (body) => ({
@@ -26,5 +29,8 @@ export const followersApi = createApi({
   }),
 });
 
-export const { useGetFollowersOfIdQuery, useCreateFollowerMutation } =
-  followersApi;
+export const {
+  useGetFollowersOfIdQuery,
+  useGetFollowsOfIdQuery,
+  useCreateFollowerMutation,
+} = followersApi;

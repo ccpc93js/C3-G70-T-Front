@@ -95,21 +95,25 @@ export default function PubCard({ pub }) {
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
-        {!avatar || !user?.avatar ? (
-          <Avatar id={userid || user?.userid} />
-        ) : (
-          <img
-            src={avatar || user?.avatar}
-            alt={id}
-            className="rounded-circle"
-            width="50"
-          />
-        )}
+        <Link to={`/user/${userid || user?.userid}`}>
+          {!avatar || !user?.avatar ? (
+            <Avatar id={userid || user?.userid} />
+          ) : (
+            <img
+              src={avatar || user?.avatar}
+              alt={id}
+              className="rounded-circle"
+              width="50"
+            />
+          )}
+        </Link>
         <div className={styles.cardHeader__info}>
           <CardTitle style={{ fontWeight: "500" }}>
             {username || user?.username}
           </CardTitle>
-          <CardText style={{ color: "rgba(1, 1, 1, .6)" }}>{timeAgo(posted)}</CardText>
+          <CardText style={{ color: "rgba(1, 1, 1, .6)" }}>
+            {timeAgo(posted)}
+          </CardText>
         </div>
       </CardHeader>
       <CardBody className={styles.cardBody}>

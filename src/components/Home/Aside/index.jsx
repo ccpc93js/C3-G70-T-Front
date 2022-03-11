@@ -8,17 +8,36 @@ export default function Aside() {
       <Card className={styles.card}>
         <CardBody className="d-flex flex-column align-items-center pb-0">
           <CardText className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            posuere erat a ante.
+            InGamers es una comunidad de gamers en la que compartir contenido y
+            poder interactuar con otros jugadores.
           </CardText>
-          <p>Acerca de</p>
-          <p>Contacto</p>
+
+          <a
+            className="nav-link"
+            href="https://www.linkedin.com/in/cristian-camilo-palomeque-caseres-14b519201/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cristian Palomeque
+          </a>
+          <a
+            className="nav-link"
+            href="https://www.linkedin.com/in/a-pedrosa/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Alejandro Pedrosa
+          </a>
+          <a
+            className="nav-link"
+            href="https://www.linkedin.com/in/mauricionromero/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Mauricio Romero
+          </a>
         </CardBody>
-        <CardText className="text-center">
-          InGamers © 2022
-          <br />
-          Todos los derechos reservados
-        </CardText>
+        <CardText className="text-center">InGamers © 2022</CardText>
       </Card>
     </div>
   );

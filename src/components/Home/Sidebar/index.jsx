@@ -41,7 +41,7 @@ export default function Sidebar() {
           <Avatar id={user.id} />
         </div>
         <CardTitle>{userData?.nickname}</CardTitle>
-        <CardSubtitle className={styles.profile__subtitle}>
+        <CardSubtitle className={styles.profile__subtitle} style={{fontSize: "1rem", color: "rgba(1, 1, 1, .75"}}>
           {userData?.username}
         </CardSubtitle>
       </CardHeader>

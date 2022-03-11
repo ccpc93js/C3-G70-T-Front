@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useUpdatePostLikesMutation } from "../../../../app/services/posts";
 import Avatar from "../../../Avatar";
+import Comments from "../../../Post/Comments";
 import timeAgo from "./timeAgo";
 import {
   Card,
@@ -11,6 +12,7 @@ import {
   CardTitle,
   CardText,
   CardImg,
+  CardFooter,
 } from "reactstrap";
 import {
   FaArrowAltCircleDown,
@@ -36,6 +38,8 @@ export default function PubCard({ pub }) {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const [disliked, setDisliked] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+
   const { id: isDetails } = useParams();
   const [updatePostLikes] = useUpdatePostLikesMutation();
   const notInitialRender = useRef(false);
@@ -92,6 +96,10 @@ export default function PubCard({ pub }) {
     }
   };
 
+  const handleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <Card body outline className={styles.card}>
       <CardHeader className={styles.cardHeader}>
@@ -132,7 +140,7 @@ export default function PubCard({ pub }) {
         )}
       </CardBody>
       <CardBody className={styles.cardFooter}>
-        <FaComment className={styles.comment} />
+        <FaComment className={styles.comment} onClick={handleShowComments} />
         <CardText className={styles.likes}>
           <FaArrowAltCircleDown
             className={styles.down}
@@ -148,6 +156,9 @@ export default function PubCard({ pub }) {
         </CardText>
         <FaShare className={styles.share} onClick={handleShare} />
       </CardBody>
+      <CardFooter>
+        <Comments id={id} showComments={showComments} />
+      </CardFooter>
     </Card>
   );
 }

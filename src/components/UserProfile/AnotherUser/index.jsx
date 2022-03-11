@@ -8,16 +8,35 @@ import PubCard from "../../Home/Feed/PubCard";
 import bgDefault from "../../../img/bgDefault.jpg";
 import Avatar from "../../Avatar";
 import { useGetUserQuery } from "../../../app/services/users";
-import { useCreateFollowerMutation } from "../../../app/services/followers";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import {  useGetFollowsOfIdQuery } from "../../../app/services/followers";
+import FollowButton from "./FollowButton";
+import UnfollowButton from "./UnfollowButton";
 
 const UserProfile = () => {
   const { id } = useParams();
   const actualUserId = useSelector((state) => state.auth.user.id);
   const { data } = useGetPostsQuery();
   const [posts, setPosts] = useState([]);
-  const [createFollower] = useCreateFollowerMutation();
   const navigate = useNavigate()
+
+  const {data:followData} = useGetFollowsOfIdQuery(actualUserId);
+  
+  const [esSeguido, setEsSeguido] = useState(false)
+  const [idVinculo, setIdVinculo] = useState(null)
+
+  console.log(followData)
+
+  useEffect(()=>{
+    if(followData){
+      const vinculo = followData.filter((user)=>user.userid ===  parseInt(id))
+      
+      if(vinculo.length > 0){
+        setIdVinculo(vinculo[0].id)
+      }
+      
+      setEsSeguido(followData.some((user)=>user.userid === parseInt(id)))
+    }
+  },[followData, id])
 
   useEffect(() => {
     if (data) {
@@ -28,16 +47,8 @@ const UserProfile = () => {
   }, [data, id]);
 
   const { data: userData } = useGetUserQuery(id);
+  
 
-  const handleFollow = async () => {
-    console.log("Follow");
-    const res = await createFollower({
-      userid: id,
-      followerID: actualUserId,
-    });
-
-    console.log(res);
-  };
 
   if (!data || !userData) {
     return <Spinner />;
@@ -72,13 +83,7 @@ const UserProfile = () => {
           <p>{userData.nickname}</p>
         </Col>
         <Col sm={12} md={3}>
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={handleFollow}
-          >
-            <AiOutlineHeart style={{ marginRight: "0.5rem" }} /> Seguir
-          </button>
+          {idVinculo ? <UnfollowButton idVinculo={idVinculo}/> :<FollowButton />}
         </Col>
       </Row>
       <Row className="row mx-0 mt-3">

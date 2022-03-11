@@ -1,44 +1,32 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardSubtitle,
-  CardTitle,
-  Row,
-} from "reactstrap";
+import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from "reactstrap";
 
-const CardPersona = () => {
-  const { user } = useSelector((state) => state.auth);
-
-  console.log(user);
+const CardPersona = ({ follower }) => {
+  const avatarDefault = `https://avatars.dicebear.com/api/pixel-art-neutral/${follower.followerID}.svg`;
 
   return (
-    <div className="container-fluid bg-wihte">
-      <Row className="d-flex justify-content-between">
-        <Card
-          style={{
-            width: "15%",
-            display: "flex",
-            backgroundColor: "rgb(170, 91, 255)",
-          }}
-          className="my-3 mx-3"
-        >
-          <CardImg
-            src="https://avatars.githubusercontent.com/12"
-            top
-            alt="avataruser"
-            style={{ maxBlockSize: "inherit" }}
-            className="rounded-3 mt-3"
-          />
-          <CardBody className="align-items-center justify-content-center text-white text-center">
-            <CardTitle>username</CardTitle>
-            <CardSubtitle>nickname</CardSubtitle>
-          </CardBody>
-        </Card>
-      </Row>
-    </div>
+    <Card
+      style={{
+        width: "9rem",
+        display: "flex",
+        backgroundColor: "rgb(170, 91, 255)",
+      }}
+      className="my-3 mx-2"
+    >
+      <CardImg
+        src={follower.avatar || avatarDefault}
+        top
+        alt="avataruser"
+        style={{ maxBlockSize: "inherit" }}
+        className="rounded-3 mt-3"
+      />
+
+      <div className="mt-3 align-items-center justify-content-center text-white text-center">
+        <CardTitle className="d-flex text-center justify-content-center">
+          {follower.username}
+        </CardTitle>
+      </div>
+    </Card>
   );
 };
 

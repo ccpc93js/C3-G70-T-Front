@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useGetPostsQuery } from "../../../app/services/posts";
 import Spinner from "../../Spinner";
@@ -17,6 +17,7 @@ const UserProfile = () => {
   const { data } = useGetPostsQuery();
   const [posts, setPosts] = useState([]);
   const [createFollower] = useCreateFollowerMutation();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (data) {
@@ -82,7 +83,7 @@ const UserProfile = () => {
       </Row>
       <Row className="row mx-0 mt-3">
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
-          <h3 className="text-dark mt-1 bg-white p-2 rounded-3">Seguidores</h3>
+          <h3 className="text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidores/${id}`)}>Seguidores</h3>
         </Col>
         <Col
           sm={12}
@@ -95,7 +96,7 @@ const UserProfile = () => {
           ))}
         </Col>
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
-          <h3 className="text-dark mt-1 bg-white p-2 rounded-3">Seguidos</h3>
+          <h3 className="text-dark mt-1 bg-white p-2 rounded-3" onClick={() => navigate(`/seguidos/${id}`)}>Seguidos</h3>
         </Col>
       </Row>
     </Container>

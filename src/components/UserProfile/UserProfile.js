@@ -64,7 +64,7 @@ const UserProfile = () => {
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
           <h3
             className="text-dark mt-1 bg-white p-2 rounded-3"
-            onClick={() => navigate("/seguidores")}
+            onClick={() => navigate(`/seguidores/${user.id}`)}
           >
             Seguidores
           </h3>
@@ -84,7 +84,7 @@ const UserProfile = () => {
         <Col sm={12} md={3} style={{ textAlign: "center" }}>
           <h3
             className="text-dark mt-1 bg-white p-2 rounded-3"
-            onClick={() => navigate("/seguidos")}
+            onClick={() => navigate(`/seguidos/${user.id}`)}
           >
             Seguidos
           </h3>

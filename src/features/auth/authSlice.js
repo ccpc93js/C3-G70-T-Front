@@ -41,6 +41,24 @@ const slice = createSlice({
       })
       .addMatcher(usersApi.endpoints.login.matchRejected, (state, action) => {
         console.log("login rejected", action);
+      })
+      .addMatcher(usersApi.endpoints.googleLogin.matchPending, (state, action) => {
+        console.log("login pending");
+      })
+      .addMatcher(usersApi.endpoints.googleLogin.matchFulfilled, (state, action) => {
+        const user = {
+          id: action.payload.id,
+          username: action.payload.username,
+          email: action.payload.emial,
+        };
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("user", JSON.stringify(user));
+        state.isAuthenticated = true;
+        state.user = user;
+        state.token = action.payload.token;
+      })
+      .addMatcher(usersApi.endpoints.googleLogin.matchRejected, (state, action) => {
+        console.log("login rejected", action);
       });
   },
 });

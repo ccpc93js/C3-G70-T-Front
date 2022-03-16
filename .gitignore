@@ -11,6 +11,9 @@
 # production
 /build
 
+#google
+user-google
+
 # misc
 .DS_Store
 .env.local

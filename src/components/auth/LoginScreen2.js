@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "./../../app/services/users";
 import { CarrouselImgs } from "../CarrouselImgs/CarrouselImgs";
-// import { FcGoogle } from "react-icons/fc";
 import Title from "./Title";
+import { LoginGoogleButton } from "./LoginGoogleButton";
 
 export const LoginScreen2 = () => {
   const [email, setEmail] = useState("");
@@ -84,7 +84,7 @@ export const LoginScreen2 = () => {
               Registrarte
             </Link>
           </div>
-          {/* <div className="d-flex bg-white justify-content-center align-items-center mt-5">
+          <div className="d-flex bg-white justify-content-center align-items-center mt-5">
             <hr className="auth__hr" />
             <div className="text-dark text-center bg-white auth__hrtext">
               &nbsp; o &nbsp;
@@ -92,17 +92,8 @@ export const LoginScreen2 = () => {
             <hr className="auth__hr" />
           </div>
           <div className="row mt-3 bg-white">
-            <button
-              className="btn-outline-dark bg-white rounded-pill text-dark"
-              style={{ color: "white", boxShadow: "none" }}
-            >
-              <FcGoogle
-                className="google-icon google-icon-wrapper"
-                style={{ backgroundColor: "inherit" }}
-              />
-              &nbsp; Google
-            </button>
-          </div> */}
+            <LoginGoogleButton  />
+          </div>
         </div>
       </div>
     </div>

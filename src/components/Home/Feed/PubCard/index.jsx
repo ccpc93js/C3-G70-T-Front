@@ -117,7 +117,9 @@ export default function PubCard({ pub }) {
         </Link>
         <div className={styles.cardHeader__info}>
           <CardTitle style={{ fontWeight: "500" }}>
-            {username || user?.username}
+            <Link to={`/user/${userid || user?.userid}`}>
+              {username || user?.username}
+            </Link>
           </CardTitle>
           <CardText style={{ color: "rgba(1, 1, 1, .6)" }}>
             {timeAgo(posted)}

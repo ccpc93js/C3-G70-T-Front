@@ -26,6 +26,13 @@ export const usersApi = createApi({
         body: credentials,
       }),
     }),
+    googleLogin: builder.mutation({
+      query: (credentials) => ({
+        url: "googleLogin",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
     register: builder.mutation({
       query: (credentials) => ({
         url: "register",
@@ -45,6 +52,7 @@ export const usersApi = createApi({
 
 export const {
   useLoginMutation,
+  useGoogleLoginMutation,
   useRegisterMutation,
   useGetUsersQuery,
   useGetUserQuery,
